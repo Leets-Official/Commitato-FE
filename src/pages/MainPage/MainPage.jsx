@@ -189,6 +189,7 @@ const MainPage = () => {
                   )}
                 </FlexBox>
                 <StyledText
+                  isActive={activeIndexes.includes(index)}
                   align={
                     activeIndexes.includes(index)
                       ? potato.id === 1 || potato.id === 3
@@ -202,7 +203,6 @@ const MainPage = () => {
               </PotatoWrapper>
             ))}
           </BgDiv>
-          {/*bg: black 에서 yellow로 그라데이션 */}
 
           <Comment3ImgWrapper>
             <AnimatedDiv ref={divRefs.current[2]}>
@@ -339,7 +339,7 @@ const BgDiv = styled.div`
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   margin-left: 100px;
   margin-right: 100px;
 `;
@@ -349,7 +349,10 @@ const StyledText = styled.p`
   font-size: 14px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   text-align: ${({ align }) => align};
-  /* margin-left: 20px; */
+  position: ${({ isActive }) => (isActive ? 'relative' : 'static')};
+  left: ${({ isActive, align }) =>
+    isActive && align === 'left' ? '-170px' : '90px'};
+  margin-bottom: 70px;
 `;
 
 const BalloonImg = styled.img`
