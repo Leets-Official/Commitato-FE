@@ -15,6 +15,8 @@ import MainFooter from './components/MainFooter';
 import ranking_img from '../../assets/ranking_img.png';
 import commitgrass from '../../assets/commitgrass.png';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import axios from 'axios';
+import githubLogin from '../../apis/auth/Login';
 
 const TranslateAnimation = keyframes`
     0%{
@@ -61,11 +63,33 @@ const pulseGrow = keyframes`
   }
   `;
 
+const GithubButton = () => {
+  const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+  const redirectUrl = import.meta.env.VITE_REACT_APP_REDIRECT_URL;
+  const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
+  const handleLogin = () => {
+    window.location.href = githubURL;
+  };
+
+  return (
+    <div>
+      <button onClick={handleLogin}>깃허브 로그인</button>
+    </div>
+  );
+};
+
+export { GithubButton };
+
 const MainPage = () => {
   const [activeIndexes, setActiveIndexes] = useState([]);
-  const onClickToGithub = () => {
-    window.open('https://api.commitato.site/login/github');
-  };
+
+  // const clientId = 'Iv23lil2Miq3YxcLJLER';
+  // const redirectUrl = 'https://www.commitato.site/login';
+  // const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
+
+  // const onClickToGithub = () => {
+  //   window.location.href = githubURL;
+  // };
 
   const onClickToBalloon = index => {
     setActiveIndexes(prevIndexes =>
@@ -113,7 +137,7 @@ const MainPage = () => {
       <StyledContainer>
         <CenterDiv>
           <MainDiv>COMMITATO</MainDiv>
-          <Button onClick={onClickToGithub} label="Login with Github" />
+          <GithubButton />
         </CenterDiv>
 
         <ScrollToTopButton />

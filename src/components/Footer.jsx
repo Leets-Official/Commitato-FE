@@ -32,7 +32,7 @@ const Footer = () => {
 
 export default Footer;
 
-const StyledDiv = styled.div`
+ const StyledDiv = styled.div`
   width: 100%;
   height: 130px;
   background-color: ${({ theme }) => theme.COLORS.black};

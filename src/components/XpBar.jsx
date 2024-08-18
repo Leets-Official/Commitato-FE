@@ -19,8 +19,7 @@ const StyledRange = styled.div`
   border: none;
 `;
 
-function XpBar() {
-  const exp = 246;
+function XpBar({ exp = 0 }) {
   const ratio = parseInt(exp % 100);
 
   return (

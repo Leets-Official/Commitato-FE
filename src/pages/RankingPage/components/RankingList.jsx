@@ -5,20 +5,20 @@ import line from '../../../assets/line.png';
 import Search from '../../../assets/Search.png';
 import { useState } from 'react';
 
-const RankingList = ({ datas }) => {
+const RankingList = ({ data }) => {
   const [search, setSearch] = useState('');
   const onChangeSearch = e => {
     setSearch(e.target.value);
   };
 
-  const getFilteredData = () => {
-    if (search === '') return datas;
-    return datas.filter(data =>
-      data.user.toLowerCase().includes(search.toLowerCase()),
-    );
-  };
+  // const getFilteredData = () => {
+  //   if (search === '') return datas;
+  //   return datas.filter(data =>
+  //     data.user.toLowerCase().includes(search.toLowerCase()),
+  //   );
+  // };
 
-  const filteredDatas = getFilteredData();
+  // const filteredDatas = getFilteredData();
   return (
     <>
       <StyledTitle>Ranking</StyledTitle>
@@ -40,9 +40,10 @@ const RankingList = ({ datas }) => {
         <div>경험치</div>
       </ListContainer>
       <div>
-        {filteredDatas.map(item => {
-          return <RankingItem key={item.id} {...item} />;
-        })}
+        {data &&
+          data.map(item => {
+            return <RankingItem key={item.id} {...item} />;
+          })}
       </div>
 
       <StyledImg src={line} />

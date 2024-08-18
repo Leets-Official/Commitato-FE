@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const postAuthLogout = async () => {
-  const accessToken = import.meta.env.VITE_REACT_APP_ACCESS_TOKEN;
+  const accessToken = localStorage.getItem('accessToken');
+
   const headers = {
     Authorization: `Bearer ${accessToken}`,
   };

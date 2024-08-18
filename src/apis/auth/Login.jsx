@@ -1,50 +1,43 @@
-import { useEffect, useContext } from 'react';
-import axios from 'axios';
-import { UserContext } from '../UserContext';
+// import axios from 'axios';
 
-const Login = () => {
-  const { setUserData, setError, setAllUserData, setUserId } =
-    useContext(UserContext);
+// const clientId = 'Iv23lil2Miq3YxcLJLER';
+// const redirectUrl = 'https://www.commitato.site/login';
+// const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
 
-  useEffect(() => {
-    const accessToken = import.meta.env.VITE_REACT_APP_ACCESS_TOKEN;
-    console.log(
-      'Environment variable - VITE_REACT_APP_ACCESS_TOKEN:',
-      accessToken,
-    );
+// const githubLogin = () => {
+//   const CLIENT_ID = import.meta.env.VITE_REACT_APP_CLIENT_ID;
 
-    if (!accessToken) {
-      setError('Access token is missing');
-      return;
-    }
+//   onclick = () => {
+//     window.location.assign(
+//       `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`,
+//     );
+//   };
+// const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+// const redirectUrl = import.meta.env.VITE_REACT_APP_REDIRECT_URL;
+// const authorizeUrl =
+//   'https://github.com/login/oauth/authorize?client_id=Iv23liJDHSa72tWCP7LX&redirect_uri=https://commitato.site/login/callback&scope=user';
+// const authorizeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user`;
+// window.location.href = authorizeUrl;
+// window.location.href = githubURL;
+// };
 
-    localStorage.setItem('accessToken', accessToken);
-    console.log('accessToken : ', accessToken);
+// export const loginCallback = async code => {
+//   const res = await axios.get(
+//     `https://api.commitato.site/login/callback?code=${code}`,
+//   );
+//   if (res.result.isSuccess) {
+//     const token = res.result.accessToken;
+//     console.log(token);
+//     return token;
+//   }
+// };
 
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-    };
-    console.log(headers);
+// export default githubLogin;
+// export default loginCallback;
 
-    axios
-      .get('api/login/test', { headers })
-      .then(response => {
-        console.log('Login response:', response.data);
-        if (response.data.isSuccess) {
-          // isSuccess로 응답 상태 확인
-          setUserData(response.data.result); // 데이터 저장
-          setUserId(response.data.result.userId);
-        } else {
-          setError(response.data.message); // 오류 메시지 설정
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching data:', err);
-        setError('An error occurred while fetching the data');
-      });
-  }, [setUserData, setError, setAllUserData, setUserId]);
+import React from 'react';
+import { GithubButton } from '../../pages/MainPage/MainPage';
 
-  return null;
-};
+const Login = () => <GithubButton />;
 
 export default Login;
