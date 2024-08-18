@@ -188,7 +188,17 @@ const MainPage = () => {
                     </>
                   )}
                 </FlexBox>
-                <StyledText>{potato.text}</StyledText>
+                <StyledText
+                  align={
+                    activeIndexes.includes(index)
+                      ? potato.id === 1 || potato.id === 3
+                        ? 'left'
+                        : 'right'
+                      : 'center'
+                  }
+                >
+                  {potato.text}
+                </StyledText>
               </PotatoWrapper>
             ))}
           </BgDiv>
@@ -338,6 +348,8 @@ const StyledText = styled.p`
   color: ${({ theme }) => theme.COLORS.gray[200]};
   font-size: 14px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  text-align: ${({ align }) => align};
+  /* margin-left: 20px; */
 `;
 
 const BalloonImg = styled.img`
