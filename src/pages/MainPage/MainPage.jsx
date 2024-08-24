@@ -292,6 +292,16 @@ export const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 280px;
+
+  @media screen and (max-width: 1920px) {
+    font-size: 200px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 150px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 100px;
+  }
 `;
 
 const FlexContainer = styled.div`
