@@ -54,17 +54,6 @@ const Header = () => {
 
 export default Header;
 
-const StyledHeader = styled.header`
-  position: fixed;
-  display: flex;
-  padding: 20px;
-  z-index: 1;
-  width: 100%;
-  height: 38px;
-  background: #ffffff;
-  top: 0px;
-`;
-
 const LogoDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
@@ -80,6 +69,46 @@ const StyledButton = styled.h1`
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.COLORS.black};
+  }
+`;
+const StyledHeader = styled.header`
+  position: fixed;
+  display: flex;
+  padding: 20px;
+  z-index: 1;
+  width: 100%;
+  height: 38px;
+  background: #ffffff;
+  top: 0px;
+  @media screen and (max-width: 1920px) {
+    height: 38px;
+    ${LogoDiv} {
+      font-size: 36px;
+    }
+    ${StyledButton} {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    height: 25px;
+    ${LogoDiv} {
+      font-size: 28px;
+    }
+    ${StyledButton} {
+      font-size: 15px;
+      white-space: nowrap;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    height: 10px;
+
+    ${LogoDiv} {
+      font-size: 15px;
+    }
+    ${StyledButton} {
+      font-size: 7px;
+      white-space: nowrap;
+    }
   }
 `;
 
