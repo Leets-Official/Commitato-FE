@@ -31,10 +31,17 @@ const FONT_SIZE = {
   large: '36px',
   larger: '64px',
 };
+
+const MEDIA = {
+  mobile: '@media (max-width:480px)',
+  tablet: '@media (max-width: 768px)',
+  desktop: '@media (max-width: 1024px)',
+};
 const theme = {
   COLORS,
   FONT_FAMILY,
   FONT_SIZE,
+  MEDIA,
 };
 
 export default theme;

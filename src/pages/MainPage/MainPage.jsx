@@ -284,7 +284,7 @@ const StyledContainer = styled(motion.div)`
   /* min-height: calc(100vh - 288px); */
 `;
 
-const MainDiv = styled.div`
+export const MainDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
   font-size: 200px;
@@ -292,6 +292,20 @@ const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 280px;
+
+  @media screen and (max-width: 1920px) {
+    font-size: 200px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 150px;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 100px;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -302,9 +316,29 @@ const FlexContainer = styled.div`
 const Comment1Img = styled.img`
   padding-left: 50px;
   width: 900px;
+  @media screen and (max-width: 1920px) {
+    width: 900px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-left: 30px;
+    width: 600px;
+  }
+  @media screen and (max-width: 480px) {
+    padding-left: 20px;
+    width: 300px;
+  }
 `;
 const Comment2Img = styled.img`
   width: 900px;
+  @media screen and (max-width: 1920px) {
+    width: 900px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 300px;
+  }
 `;
 
 const Comment2ImgWrapper = styled.div`
@@ -340,12 +374,34 @@ const Comment3Img = styled.img`
   margin-left: 100px;
   top: 1300px;
   width: 900px;
+  @media screen and (max-width: 1920px) {
+    width: 900px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 70px;
+    width: 600px;
+  }
+  @media screen and (max-width: 480px) {
+    margin-left: 50px;
+    width: 300px;
+  }
 `;
 const Comment4Img = styled.img`
   position: relative;
   padding-right: 100px;
   top: 1700px;
   width: 900px;
+  @media screen and (max-width: 1920px) {
+    width: 900px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-right: 200px;
+    width: 600px;
+  }
+  @media screen and (max-width: 480px) {
+    padding-right: 300px;
+    width: 300px;
+  }
 `;
 
 const AnimatedDiv = styled.div`
@@ -435,6 +491,14 @@ const SlideUpText = styled.div`
   justify-content: center;
   align-items: center;
   gap: 50px;
+  @media screen and (max-width: 1920px) {
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 30px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 const AnimatedImg = styled.div`
   animation: ${SlideUp} 2s infinite;
@@ -454,6 +518,18 @@ const CommitGrassImg = styled.img`
   position: relative;
   top: 1400px;
   cursor: pointer;
+  @media screen and (max-width: 1920px) {
+    width: 1100px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-left: 100px;
+    width: 600px;
+    height: 200px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 300px;
+    height: 100px;
+  }
 `;
 
 const RankingImg = styled.img`
@@ -463,6 +539,18 @@ const RankingImg = styled.img`
   top: 1700px;
   padding-right: 160px;
   cursor: pointer;
+  @media screen and (max-width: 1920px) {
+    width: 1100px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-right: 160px;
+    width: 600px;
+    height: 200px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 300px;
+    height: 100px;
+  }
 `;
 
 const StyledComment = styled.div`
@@ -472,6 +560,17 @@ const StyledComment = styled.div`
   position: relative;
   top: 1430px;
   left: 169px;
+  @media screen and (max-width: 1920px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    left: 110px;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 480px) {
+    left: 110px;
+    font-size: 10px;
+  }
 `;
 
 const StyledComment2 = styled(StyledComment)`
