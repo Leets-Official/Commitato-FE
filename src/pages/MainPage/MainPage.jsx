@@ -284,7 +284,7 @@ const StyledContainer = styled(motion.div)`
   /* min-height: calc(100vh - 288px); */
 `;
 
-const MainDiv = styled.div`
+export const MainDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
   font-size: 200px;
