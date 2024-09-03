@@ -71,5 +71,6 @@
 <img width="1269" alt="image" src="https://github.com/user-attachments/assets/aaa0b9b7-4a3c-4e02-88fc-be7ea41e9d08">
 
 ### 마이페이지 
+<img width="829" alt="image" src="https://github.com/user-attachments/assets/a98670b7-8ef7-4d86-8be3-d83e5238dbc3">
 
 ### 랭킹
