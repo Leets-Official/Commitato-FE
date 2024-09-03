@@ -59,6 +59,17 @@
 ## 🖥 화면 구성 
 
 ### 메인 
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/75eec707-897e-4ac8-8430-6e8b2b1590a4">
+
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/3e4ce159-615e-4838-b8a0-121059864ba0">
+<img width="1279" alt="image" src="https://github.com/user-attachments/assets/9e2bcc61-f2ba-4a7d-9fb2-d33def2952b4">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/3e128994-aeb4-40f6-866d-52c29cc5f802">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/bedc8ca7-3fc2-4cb6-96c2-37c6bc2ca4b7">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/9dd00549-e807-4ed1-ace3-44074709f809">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/90c1d353-9a45-4555-92f5-e4890409f7c5">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/b21d4f3c-b4ac-49fe-8eb4-60cf9c4d5887">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/d8afa175-8367-4d6f-9a67-fdf56fc2891f">
+<img width="1269" alt="image" src="https://github.com/user-attachments/assets/aaa0b9b7-4a3c-4e02-88fc-be7ea41e9d08">
 
 ### 마이페이지 
 
