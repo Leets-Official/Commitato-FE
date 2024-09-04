@@ -58,7 +58,7 @@
 
 ## 🖥 화면 구성 
 
-### 메인 
+## 메인페이지
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/75eec707-897e-4ac8-8430-6e8b2b1590a4">
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/3e4ce159-615e-4838-b8a0-121059864ba0">
 <img width="1279" alt="image" src="https://github.com/user-attachments/assets/9e2bcc61-f2ba-4a7d-9fb2-d33def2952b4">
@@ -70,7 +70,15 @@
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/287c8885-1ae2-4b25-b718-19f7486c42a1">
 <img width="1269" alt="image" src="https://github.com/user-attachments/assets/aaa0b9b7-4a3c-4e02-88fc-be7ea41e9d08">
 
-### 마이페이지 
+<details>
+  <summary>마이페이지</summary>
 <img width="829" alt="image" src="https://github.com/user-attachments/assets/a98670b7-8ef7-4d86-8be3-d83e5238dbc3">
+  
+</details> 
+<br/>
+<details>
+  <summary>랭킹페이지</summary>
 
-### 랭킹
+  
+</details> 
+
