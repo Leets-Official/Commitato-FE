@@ -16,7 +16,7 @@
 <table>
   <tr>
     <td width="200px">
-      <a href="https://github.com/dahhyeon" target="_blank">  
+      <a href="https://github.com/dalzzy" target="_blank">  
       <img src="https://avatars.githubusercontent.com/u/134191693?v=4" alt="계다현" />  
       </a>  
     </td>
@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/dahhyeon target="_blank">
+      <a href="https://github.com/dalzzy target="_blank">
         계다현
       </a>
     </td>
@@ -72,13 +72,13 @@
 
 <details>
   <summary>마이페이지</summary>
-<img width="829" alt="image" src="https://github.com/user-attachments/assets/a98670b7-8ef7-4d86-8be3-d83e5238dbc3">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/a98670b7-8ef7-4d86-8be3-d83e5238dbc3">
   
 </details> 
 <br/>
 <details>
   <summary>랭킹페이지</summary>
+  <img width="1280" alt="image" src="https://github.com/user-attachments/assets/4a4feffa-558a-4a36-83ae-8d3e9da80681">
 
-  
 </details> 
 
