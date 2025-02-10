@@ -1,5 +1,6 @@
 # 🥔Commitato
-
+> **v1 Leets 3기 최종 프로젝트 개발 기간: 2024.06.20 ~ 2024.08.01** <br/>
+> **v2 개발 기간: 2025.02.10~**
 <img src="https://github.com/user-attachments/assets/9d5607fb-20cf-47b5-b0cc-020c87b31250" width="800px"/>
 
 ## ✍프로젝트 소개 
@@ -54,6 +55,10 @@
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
   <img src="https://img.shields.io/badge/Notion-A8B9CC?style=for-the-badge&logo=Notion&logoColor=black">
   <img src="https://img.shields.io/badge/Figma-49B48A?style=for-the-badge&logo=Figma&logoColor=ffffff">  
+</div>
+
+<div>
+  
 </div>
 
 ## 🖥 화면 구성 
