@@ -1,20 +1,7 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "target": "ES6",
-    "module": "ESNext",
-    "strict": true,
-    "baseUrl": "./",
-    "outDir": "./dist",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

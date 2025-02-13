@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Staatliches-Regular';
+    src: url('/fonts/Staatliches-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('/fonts/Pretendard-ExtraBold.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('/fonts/Pretendard-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: url('/fonts/Pretendard-SemiBold.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('/fonts/Pretendard-Bold.woff') format('woff');
+  }
+
+  html {
+    font-family: theme('fontFamily.pretendard');
+  }
+
+  body {
+    background-color: black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 80vh;
+    width: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: theme('colors.black');
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: theme('colors.yellow.100');
+    border-radius: 6px;
+    border: 3px solid theme('colors.black');
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.yellow.200');
+  }
+}
+
+@layer utilities {
+  .font-pretendard {
+    font-family: theme('fontFamily.pretendard');
+  }
+
+  .font-staatliches {
+    font-family: theme('fontFamily.staatliches');
+  }
+}
