@@ -3,18 +3,51 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      fontFamily: {
-        pretendard: ['Pretendard', 'sans-serif'],
-        staatliches: ['Staatliches', 'cursive'],
-      },
       colors: {
+        gray: {
+          100: '#d9d9d9',
+          200: '#808080',
+        },
+        yellow: {
+          100: '#ffcf55',
+          200: '#cca644',
+        },
+        brown: {
+          100: '#7f6625',
+          200: '#4d3e1a',
+        },
         primary: '#FFCF55',
         grey: '#808080',
         lightGray: '#D9D9D9',
-        brown: '#7F6625',
-        yellow: '#FFBA07', //추가된 색상
-        thickBrown: '#4D3EIA', //HOW 두번째
-        lightBrown: '#CCA644', //HOW 세번째
+        thickBrown: '#4D3E1A',
+        lightBrown: '#CCA644',
+      },
+      fontFamily: {
+        pretendard: [
+          'Pretendard-Regular',
+          'Pretendard-SemiBold',
+          'Pretendard-Bold',
+          'Pretendard-ExtraBold',
+          'sans-serif',
+        ],
+        staatliches: ['Staatliches-Regular', 'cursive'],
+      },
+      fontSize: {
+        small: '20px',
+        medium: '28px',
+        large: '36px',
+        larger: '64px',
+        header: '48px',
+        captionHeader: '36px',
+        body: '24px',
+        captionBody: '18px',
+        assistive: '16px',
+        button: '13px',
+      },
+      screens: {
+        mobile: '480px',
+        tablet: '768px',
+        desktop: '1024px',
       },
     },
   },
