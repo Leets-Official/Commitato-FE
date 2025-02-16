@@ -9,7 +9,7 @@ interface ProfileCardProps {
 
 const CommitStats = ({ user }: ProfileCardProps) => {
   return (
-    <div className="text-black flex flex-col p-2 w-[285px]">
+    <div className="text-black flex flex-col p-2 w-full">
       {statsData.map(({ label, valueKey }, index) => (
         <>
           <div key={index} className="flex items-center justify-between">
@@ -18,7 +18,7 @@ const CommitStats = ({ user }: ProfileCardProps) => {
               {user[valueKey as keyof UserTypes]}
             </p>
           </div>
-          <Line />
+          <Line className="w-full" />
         </>
       ))}
       <div className="flex items-center justify-between">
