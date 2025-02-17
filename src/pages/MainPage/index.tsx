@@ -6,7 +6,7 @@ const MainPagae = () => {
     <>
       <Header />
       main
-      <Footer isMainPage={true} />
+      <Footer isMainPage />
     </>
   );
 };
