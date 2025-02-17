@@ -1,5 +1,5 @@
 import FarmLine from '@/assets/icon/commitFarm.svg?react';
-import CountNumber from './CountNumber';
+import CountNumber from '@/components/myPage/MyCommitFarm';
 
 const MyCommitFarm = () => {
   return (
