@@ -6,6 +6,10 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ isMainPage = false }) => {
+  const handleGithubClick = () => {
+    window.open('https://github.com/Leets-Official/Commitato-FE');
+  };
+
   return (
     <footer
       className={`w-full ${
@@ -15,9 +19,8 @@ const Footer: React.FC<FooterProps> = ({ isMainPage = false }) => {
       <div className="px-9">
         <div className="flex justify-center items-center space-x-2">
           <span className="font-staatliches text-body">COMMITATO</span>
-          <Github />
+          <Github onClick={handleGithubClick} className="cursor-pointer" />
         </div>
-
         <div className="flex-col text-button text-grey mt-[5%] space-y-3">
           {isMainPage && (
             <div className="flex-col text-button text-grey mt-[5%] space-y-3">

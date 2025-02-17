@@ -7,10 +7,13 @@ export default {
         gray: {
           100: '#d9d9d9',
           200: '#808080',
+          300: '#ececec',
         },
         yellow: {
           100: '#ffcf55',
           200: '#cca644',
+          300: '#FFEBB7',
+          400: '#FFDF8D',
         },
         brown: {
           100: '#7f6625',
@@ -23,13 +26,10 @@ export default {
         lightBrown: '#CCA644',
       },
       fontFamily: {
-        pretendard: [
-          'Pretendard-Regular',
-          'Pretendard-SemiBold',
-          'Pretendard-Bold',
-          'Pretendard-ExtraBold',
-          'sans-serif',
-        ],
+        Regular: ['Pretendard-Regular', 'sans-serif'],
+        SemiBold: ['Pretendard-SemiBold', 'sans-serif'],
+        Bold: ['Pretendard-Bold', 'sans-serif'],
+        ExtraBold: ['Pretendard-ExtraBold', 'sans-serif'],
         staatliches: ['Staatliches-Regular', 'cursive'],
       },
       fontSize: {
