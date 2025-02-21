@@ -1,5 +1,5 @@
 import FarmLine from '@/assets/icon/commitFarm.svg?react';
-import CountNumber from '@/components/myPage/MyCommitFarm';
+import CountNumber from '@/components/myPage/CountNumber';
 
 const MyCommitFarm = () => {
   return (
@@ -9,7 +9,6 @@ const MyCommitFarm = () => {
         <CountNumber />
       </div>
       <FarmLine className="w-full" />
-      {/* 잔디 api 추가할 예정 */}
     </main>
   );
 };
