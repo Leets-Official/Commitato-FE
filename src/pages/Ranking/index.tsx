@@ -13,7 +13,7 @@ const RankingPage = () => {
       <Header />
       <main className="h-[90vh] flex flex-col m-[3%] w-[65%] bg-white rounded-2xl mx-auto py-7 px-10">
         <p className="font-staatliches text-header">RANKING</p>
-        <Line />
+        <Line className="w-full overflow-visible" />
         <div className="relative w-[90%] mt-2 flex items-center justify-center mx-auto">
           <input
             className="w-full flex border-[3.5px] border-primary rounded-full placeholder:font-staatliches 

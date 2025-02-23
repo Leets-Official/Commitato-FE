@@ -107,7 +107,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
 
   return (
     <div className="w-full">
-      <div className="flex  py-3 font-ExtraBold text-grey text-left px-4">
+      <div className="flex py-3 font-ExtraBold text-grey text-left px-4">
         <div className="w-[10%]">Rank</div>
         <div className="w-[30%]">User</div>
         <div className="w-[35%]">Tier</div>
@@ -115,14 +115,18 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         <div className="w-[10%]">경험치</div>
       </div>
 
-      <div>
-        {filteredData.map(data => (
-          <RankingItem key={data.userId} {...data} />
-        ))}
+      <div className="w-full min-h-[50vh]">
+        {filteredData.length > 0 ? (
+          filteredData.map(data => <RankingItem key={data.userId} {...data} />)
+        ) : (
+          <p className="text-center text-grey font-Bold">
+            검색 결과가 없습니다.
+          </p>
+        )}
       </div>
 
       {myRanking && (
-        <div className="w-full mt-10 pt-3">
+        <div className="w-full mt-9 pt-3">
           <Line className="w-full" />
           <RankingItem {...myRanking} />
         </div>
