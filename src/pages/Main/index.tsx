@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
-const MainPagae = () => {
+const MainPage = () => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const MainPagae = () => {
   );
 };
 
-export default MainPagae;
+export default MainPage;
