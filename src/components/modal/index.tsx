@@ -11,7 +11,7 @@ const Modal = ({ className, children, onClose }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-1">
       <div
-        className={`relative bg-white w-[704px] py-7 rounded-xl flex flex-col items-center justify-center text-center font-SemiBold text-[18px] ${className}`}
+        className={`relative bg-white w-[704px] py-7 rounded-xl flex flex-col items-center justify-center text-center font-SemiBold text-captionBody ${className}`}
       >
         {onClose && (
           <button onClick={onClose} className="absolute top-4 right-4">
