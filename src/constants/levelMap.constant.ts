@@ -12,5 +12,5 @@ export const levelMap: Record<string, LevelInfo> = {
   '바보 감자': { nextLevel: '말하는 감자', image: FirstCommitato },
   '말하는 감자': { nextLevel: '개발자 감자', image: SecondCommitato },
   '개발자 감자': { nextLevel: 'CEO 감자', image: ThirdCommitato },
-  'CEO 감자': { nextLevel: 'CEO 감자', image: FourthCommitato },
+  'CEO 감자': { nextLevel: '', image: FourthCommitato },
 } as const;
