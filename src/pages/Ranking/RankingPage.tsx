@@ -101,7 +101,7 @@
 //     try {
 //       //성공
 //       axios.get(url, { params: queryParams }).then(response => {
-//         console.log(response.data);
+//         console.log(respoanse.data);
 //         setData(response.data);
 //       });
 //     } catch (e) {

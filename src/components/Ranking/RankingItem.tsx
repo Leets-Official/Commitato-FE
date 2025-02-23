@@ -1,0 +1,56 @@
+import React from 'react';
+import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
+import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
+import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
+
+interface RankingItemProps {
+  rank: number;
+  user: string;
+  tier: string;
+  commitDay: string;
+  exp: number;
+  change: 'up' | 'down' | 'none' | string;
+  isMe?: boolean;
+}
+
+const RankingItem: React.FC<RankingItemProps> = ({
+  rank,
+  user,
+  tier,
+  commitDay,
+  exp,
+  change,
+  isMe,
+}) => {
+  const getIcon = () => {
+    switch (change) {
+      case 'up':
+        return <UpIcon className="ml-10" />;
+      case 'down':
+        return <DownIcon className="ml-10" />;
+      default:
+        return <LineIcon className="ml-10" />;
+    }
+  };
+
+  return (
+    <div className="flex py-3 px-4 items-center font-Bold">
+      <div className="w-[10%]">{rank}</div>
+      <div className="w-[30%] flex items-center">
+        {isMe && (
+          <span className="bg-primary px-1 rounded text-captionBody font-SemiBold mr-2">
+            me
+          </span>
+        )}
+        {user}
+      </div>
+      <div className="w-[35%]">{tier}</div>
+      <div className="w-[15%]">{commitDay}</div>
+      <div className="w-[10%] font-bold flex items-center">
+        {exp} <span>{getIcon()}</span>
+      </div>
+    </div>
+  );
+};
+
+export default RankingItem;
