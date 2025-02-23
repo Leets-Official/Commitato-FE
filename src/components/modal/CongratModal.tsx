@@ -1,5 +1,5 @@
 import Modal from '@/components/modal';
-import Button from '../Button';
+import Button from '@/components/Button';
 import FirstCommitato from '@/assets/icon/firstCommitato.svg?react';
 import Next from '@/assets/icon/next.svg?react';
 import SecondCommitato from '@/assets/icon/secondCommitato.svg?react';
