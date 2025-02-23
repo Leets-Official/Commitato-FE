@@ -6,7 +6,7 @@ const rankingData = [
   {
     rank: 1,
     userId: 1,
-    user: 'githubID_1',
+    user: 'adflakjd',
     tier: 'CEO 감자',
     commitDay: '7일',
     exp: 120,
@@ -15,7 +15,7 @@ const rankingData = [
   {
     rank: 2,
     userId: 2,
-    user: 'githubID_2',
+    user: 'dalzzy',
     tier: 'CEO 감자',
     commitDay: '5일',
     exp: 110,
@@ -25,7 +25,7 @@ const rankingData = [
   {
     rank: 3,
     userId: 3,
-    user: 'githubID_3',
+    user: 'woneeeee',
     tier: 'CEO 감자',
     commitDay: '4일',
     exp: 100,
@@ -43,7 +43,7 @@ const rankingData = [
   {
     rank: 5,
     userId: 5,
-    user: 'githubID_5',
+    user: 'kimmm',
     tier: '말하는 감자',
     commitDay: '4일',
     exp: 80,
@@ -96,7 +96,13 @@ const rankingData = [
   },
 ];
 
-const RankingList: React.FC = () => {
+interface RankingListProps {
+  searchId: string;
+}
+const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
+  const filteredData = rankingData.filter(item =>
+    item.user.toLowerCase().includes(searchId.toLowerCase()),
+  );
   const myRanking = rankingData.find(item => item.isMe);
 
   return (
@@ -110,7 +116,7 @@ const RankingList: React.FC = () => {
       </div>
 
       <div>
-        {rankingData.map(data => (
+        {filteredData.map(data => (
           <RankingItem key={data.userId} {...data} />
         ))}
       </div>

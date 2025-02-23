@@ -3,8 +3,11 @@ import Line from '@/assets/icon/myPageLine.svg?react';
 import SearchIcon from '@/assets/icon/ic_ranking_search.svg?react';
 import Footer from '@/components/Footer';
 import RankingList from '@/components/Ranking/RankingList';
+import { useState } from 'react';
 
 const RankingPage = () => {
+  const [searchId, setSearchId] = useState('');
+
   return (
     <div className="bg-black min-h-screen flex flex-col">
       <Header />
@@ -16,10 +19,12 @@ const RankingPage = () => {
             className="w-full flex border-[3.5px] border-primary rounded-full placeholder:font-staatliches 
             placeholder:text-body placeholder:text-lightGray outline-none font-Bold text-body px-4 py-2 mt-2 leading-none"
             placeholder="SEARCH ID"
+            value={searchId}
+            onChange={e => setSearchId(e.target.value)}
           />
           <SearchIcon className="absolute right-3 top-1/2 transform -translate-y-4 w-[28px]" />
         </div>
-        <RankingList />
+        <RankingList searchId={searchId} />
       </main>
       <Footer />
     </div>
