@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import { ReactNode } from 'react';
 
-export default function Button(props) {
-  const { label, onClick } = props;
-
-  return <StyledButton onClick={onClick}>{label}</StyledButton>;
+interface ButtonProps {
+  children: ReactNode;
+  onClick?: () => void;
+  className?: string;
 }
 
-export const StyledButton = styled.button`
-  background-color: ${({ theme }) => theme.COLORS.black};
-  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
-  font-size: ${({ theme }) => theme.FONT_SIZE.small};
-  width: 300px;
-  height: 50px;
-  border-radius: 13px;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-`;
+const Button = ({ children, onClick, className }: ButtonProps) => {
+  return (
+    <div
+      className={`bg-black flex items-center text-captionBody justify-center text-white font-ExtraBold rounded-lg cursor-pointer ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default Button;
