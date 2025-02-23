@@ -9,7 +9,7 @@ import { UserTypes } from 'commitato-types';
 const userData: UserTypes = {
   githubId: 'woneeeee',
   ranking: 10,
-  level: '바보감자',
+  level: '바보 감자',
   commit: 3,
   todayCommit: 30,
   totalCommit: 121,
