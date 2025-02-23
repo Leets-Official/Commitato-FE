@@ -122,7 +122,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
       </div>
 
       {myRanking && (
-        <div className="w-full mt-5 pt-3">
+        <div className="w-full mt-10 pt-3">
           <Line className="w-full" />
           <RankingItem {...myRanking} />
         </div>

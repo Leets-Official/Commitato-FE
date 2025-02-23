@@ -42,7 +42,12 @@ const RankingItem: React.FC<RankingItemProps> = ({
             me
           </span>
         )}
-        {user}
+        <span
+          className="cursor-pointer hover:underline"
+          onClick={() => alert(`${user} 프로필로 이동`)}
+        >
+          {user}
+        </span>
       </div>
       <div className="w-[35%]">{tier}</div>
       <div className="w-[15%]">{commitDay}</div>
