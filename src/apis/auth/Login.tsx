@@ -36,7 +36,7 @@
 // export default loginCallback;
 
 import React from 'react';
-import { GithubButton } from '../../pages/MainPage/MainPage';
+import { GithubButton } from '../../pages/Main/MainPage';
 
 const Login = () => <GithubButton />;
 

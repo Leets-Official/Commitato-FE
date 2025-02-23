@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
     return localStorage.getItem('accessToken') === 'true';
   });
+
+  const location = useLocation();
 
   useEffect(() => {
     localStorage.setItem('accessToken', String(isLoggedIn));
@@ -18,14 +20,17 @@ const Header: React.FC = () => {
             COMMITATO
           </Link>
           <div className="space-x-8">
-            <Link to="/" className="text-grey text-assistive hover:text-black">
+            <Link
+              to="/"
+              className={`text-assistive ${location.pathname === '/' ? 'text-black' : 'text-grey hover:text-black'} `}
+            >
               HOME
             </Link>
 
             {isLoggedIn && (
               <Link
                 to="/mypage"
-                className="text-grey text-assistive hover:text-black"
+                className={`text-assistive ${location.pathname === '/mypage' ? 'text-black' : 'text-grey hover:text-black'} `}
               >
                 MY PAGE
               </Link>
@@ -33,7 +38,7 @@ const Header: React.FC = () => {
 
             <Link
               to="/ranking"
-              className="text-grey text-assistive hover:text-black"
+              className={`text-assistive ${location.pathname === '/ranking' ? 'text-black' : 'text-grey hover:text-black'} `}
             >
               RANKING
             </Link>

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import MainPage from '@/pages/MainPage';
-import RankingPage from '@/pages/RankingPage';
+import MainPage from '@/pages/Main';
+import RankingPage from '@/pages/Ranking';
 import MyPage from '@/pages/myPage';
 
 const router = createBrowserRouter([
