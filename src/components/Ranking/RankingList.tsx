@@ -1,5 +1,6 @@
 import React from 'react';
-import RankingItem from './RankingItem';
+import RankingItem from '@/components/Ranking/RankingItem';
+import Line from '@/assets/icon/myPageLine.svg?react';
 
 const rankingData = [
   {
@@ -96,6 +97,8 @@ const rankingData = [
 ];
 
 const RankingList: React.FC = () => {
+  const myRanking = rankingData.find(item => item.isMe);
+
   return (
     <div className="w-full">
       <div className="flex  py-3 font-ExtraBold text-grey text-left px-4">
@@ -111,6 +114,13 @@ const RankingList: React.FC = () => {
           <RankingItem key={data.userId} {...data} />
         ))}
       </div>
+
+      {myRanking && (
+        <div className="w-full mt-5 pt-3">
+          <Line className="w-full" />
+          <RankingItem {...myRanking} />
+        </div>
+      )}
     </div>
   );
 };

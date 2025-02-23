@@ -25,11 +25,11 @@ const RankingItem: React.FC<RankingItemProps> = ({
   const getIcon = () => {
     switch (change) {
       case 'up':
-        return <UpIcon className="ml-10" />;
+        return <UpIcon className="w-3 h-4" />;
       case 'down':
-        return <DownIcon className="ml-10" />;
+        return <DownIcon className="w-3 h-4" />;
       default:
-        return <LineIcon className="ml-10" />;
+        return <LineIcon className="w-3 h-2" />;
     }
   };
 
@@ -46,8 +46,9 @@ const RankingItem: React.FC<RankingItemProps> = ({
       </div>
       <div className="w-[35%]">{tier}</div>
       <div className="w-[15%]">{commitDay}</div>
-      <div className="w-[10%] font-bold flex items-center">
-        {exp} <span>{getIcon()}</span>
+      <div className="w-[10%] font-bold flex items-center justify-between">
+        <span className="mr-1">{exp}</span>
+        {getIcon()}
       </div>
     </div>
   );
