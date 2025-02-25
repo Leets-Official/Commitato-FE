@@ -1,6 +1,6 @@
 import GithubLoginButton from '@/components/main/GithubLogin';
-import BannerIcon from '@/assets/icon/ic_main_banner.svg?react';
 import { TextFade } from './TextFade';
+import ScrollBanner from '@/components/main/Banner';
 
 interface SectionProps {
   className?: string;
@@ -16,8 +16,7 @@ const Section: React.FC<SectionProps> = ({ className }) => {
         <GithubLoginButton />
       </div>
       <div className="flex items-center gap-7">
-        <BannerIcon className="w-[160px]" />
-        <span className="font-staatliches text-[96px]">ABOUT COMMITATO</span>
+        <ScrollBanner className="mt-10" baseVelocity={4} />
       </div>
     </>
   );

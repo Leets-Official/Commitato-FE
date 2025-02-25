@@ -37,12 +37,12 @@ const MainPage = () => {
           </div>
 
           <Footer isMainPage />
-          {isModalOpen && (
+          {/* {isModalOpen && (
             <WelcomeModal
               onClose={() => setIsModalOpen(false)}
               githubId={githubId}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>
