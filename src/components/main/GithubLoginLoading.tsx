@@ -33,7 +33,7 @@ const GithubLoginLoading = () => {
     };
     fetchAuthCode();
   }, []);
-  return <>카ㅏㅋ</>;
+  return <>로딩중</>;
 };
 
 export default GithubLoginLoading;
