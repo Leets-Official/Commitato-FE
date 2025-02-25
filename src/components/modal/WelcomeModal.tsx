@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface WelcomeModalProps {
   onClose: () => void;
-  githubId: string;
+  githubId: string | null;
 }
 
 const WelcomeModal = ({ onClose, githubId }: WelcomeModalProps) => {
