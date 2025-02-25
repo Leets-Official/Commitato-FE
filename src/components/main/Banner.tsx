@@ -23,7 +23,7 @@ const ScrollBanner: React.FC<{ baseVelocity?: number; className?: string }> = ({
     stiffness: 500,
   });
 
-  const velocityFactor = useTransform(smoothVelocity, [0, 400], [0, 5], {
+  const velocityFactor = useTransform(smoothVelocity, [0, 350], [0, 5], {
     clamp: false,
   });
 
@@ -49,12 +49,12 @@ const ScrollBanner: React.FC<{ baseVelocity?: number; className?: string }> = ({
         className="flex gap-10 text-[64px] font-staatliches tracking-tight uppercase text-black"
         style={{ x }}
       >
-        {Array(15)
+        {Array(20)
           .fill(null)
           .map((_, index) => (
             <div key={index} className="flex items-center gap-6">
               <BannerIcon className="w-[160px]" />
-              <span className="block">ABOUT COMMITATO</span>
+              <span>ABOUT COMMITATO</span>
             </div>
           ))}
       </motion.div>
