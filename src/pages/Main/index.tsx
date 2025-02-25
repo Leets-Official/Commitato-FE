@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import GithubLoginButton from '@/components/main/GithubLogin';
 
 const MainPage = () => {
   return (
@@ -18,6 +19,7 @@ const MainPage = () => {
                   className="w-full h-screen flex items-center justify-center text-[12rem] font-staatliches text-black"
                 >
                   COMMITATO
+                  <GithubLoginButton />
                 </section>
               ))}
           </div>

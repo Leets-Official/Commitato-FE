@@ -1,16 +1,13 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
-    return localStorage.getItem('accessToken') === 'true';
-  });
+  const isLoggedIn = localStorage.getItem('accessToken');
+  const nav = useNavigate();
 
-  const location = useLocation();
-
-  useEffect(() => {
-    localStorage.setItem('accessToken', String(isLoggedIn));
-  }, [isLoggedIn]);
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    nav('/');
+  };
 
   return (
     <header className="w-full h-[63px] bg-white">
@@ -46,10 +43,7 @@ const Header: React.FC = () => {
         </div>
 
         {isLoggedIn && (
-          <button
-            onClick={() => setIsLoggedIn(false)}
-            className="text-grey hover:text-black"
-          >
+          <button onClick={handleLogout} className="text-grey hover:text-black">
             Logout
           </button>
         )}
