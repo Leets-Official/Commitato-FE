@@ -3,11 +3,29 @@ import Header from '@/components/Header';
 
 const MainPage = () => {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <Header />
-      main
-      <Footer isMainPage />
-    </>
+      <div className="relative w-screen min-w-screen  min-h-screen">
+        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_bottom,#FFCF55_0%,#FFCF55_20%,#000_40%,#000_60%,#FFCF55_70%,#000_100%)] "></div>
+
+        <div className="relative h-auto">
+          <div className="relative flex flex-col items-center justify-center space-y-10 py-20">
+            {Array(9)
+              .fill('')
+              .map((_, index) => (
+                <section
+                  key={index}
+                  className="w-full h-screen flex items-center justify-center text-[12rem] font-staatliches text-black"
+                >
+                  COMMITATO
+                </section>
+              ))}
+          </div>
+
+          <Footer isMainPage />
+        </div>
+      </div>
+    </div>
   );
 };
 
