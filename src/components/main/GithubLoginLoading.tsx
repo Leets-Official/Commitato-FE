@@ -21,8 +21,9 @@ const GithubLoginLoading = () => {
 
         if (isSuccess) {
           const accessToken = res.result.accessToken;
-          console.log(accessToken);
+          const githubId = res.result.githubId;
           localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('githubId', githubId);
           nav('/');
         } else {
           console.log('로그인 실패');
