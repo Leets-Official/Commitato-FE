@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import GihubSVG from '@/assets/icon/footerGithub.svg?react';
+import GithubSVG from '@/assets/icon/footerGithub.svg?react';
 
 const CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_GITHUB_REDIRECT_URI;
@@ -13,7 +13,7 @@ const GithubLoginButton = () => {
   return (
     <Button onClick={handleGithubLogin} className="w-[15%] h-[55px]">
       Login with
-      <GihubSVG className="m-2" />
+      <GithubSVG className="m-2" />
       Github
     </Button>
   );
