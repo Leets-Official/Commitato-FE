@@ -13,7 +13,7 @@ const GithubLoginButton = () => {
   return (
     <Button
       onClick={handleGithubLogin}
-      className="flex items-center justify-center gap-2 px-7 py-3 w-full max-w-[280px] min-w-[180px] whitespace-nowrap"
+      className="flex items-center justify-center gap-2 px-7 py-3 w-full max-w-[280px] min-w-[180px] mt-20 whitespace-nowrap"
     >
       Login with
       <GithubSVG className="w-6 h-6" />

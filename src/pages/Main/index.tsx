@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import Section from '@/components/main/Section';
+import SectionMain from '@/components/main/SectionMain';
 import WelcomeModal from '@/components/modal/WelcomeModal';
 import { useEffect, useState } from 'react';
 
@@ -29,7 +29,7 @@ const MainPage = () => {
             {Array(9)
               .fill('')
               .map((_, index) => (
-                <Section
+                <SectionMain
                   // key={index}
                   className="w-full h-screen"
                 />
@@ -37,12 +37,12 @@ const MainPage = () => {
           </div>
 
           <Footer isMainPage />
-          {/* {isModalOpen && (
+          {isModalOpen && (
             <WelcomeModal
               onClose={() => setIsModalOpen(false)}
               githubId={githubId}
             />
-          )} */}
+          )}
         </div>
       </div>
     </div>

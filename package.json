@@ -17,6 +17,7 @@
     "moment": "^2.30.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-fullpage": "^0.1.19",
     "react-github-calendar": "^4.1.6",
     "react-intersection-observer": "^9.13.0",
     "react-modal": "^3.16.1",
