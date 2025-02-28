@@ -1,5 +1,5 @@
-import GithubLoginButton from '@/components/main/GithubLogin';
-import { TextFade } from './TextFade';
+import GithubLoginButton from '@/components/main/GithubLoginButton';
+import { TextFade } from '@/components/main/TextFade';
 import ScrollBanner from '@/components/main/Banner';
 
 interface SectionProps {
@@ -15,6 +15,7 @@ const Section: React.FC<SectionProps> = ({ className }) => {
         <TextFade direction={'up'} duration={2.2} delay={0.2}>
           <div className="font-staatliches text-[13rem]">COMMITATO</div>
         </TextFade>
+
         <GithubLoginButton />
       </div>
       <div className="flex items-center gap-7">
