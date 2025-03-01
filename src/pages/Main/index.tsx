@@ -1,5 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import SectionAbout from '@/components/main/SectionAbout';
+import SectionFeature from '@/components/main/SectionFeature';
 import SectionMain from '@/components/main/SectionMain';
 import WelcomeModal from '@/components/modal/WelcomeModal';
 import { useEffect, useState } from 'react';
@@ -37,12 +39,12 @@ const MainPage = () => {
           </div>
 
           <Footer isMainPage />
-          {isModalOpen && (
-            <WelcomeModal
-              onClose={() => setIsModalOpen(false)}
-              githubId={githubId}
-            />
-          )}
+          {/* {isModalOpen && (
+        <WelcomeModal
+          onClose={() => setIsModalOpen(false)}
+          githubId={githubId}
+        />
+      )} */}
         </div>
       </div>
     </div>
