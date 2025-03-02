@@ -12,7 +12,7 @@ import { wrap } from '@motionone/utils';
 import BannerIcon from '@/assets/icon/ic_main_banner.svg?react';
 
 const ScrollBanner: React.FC<{ baseVelocity?: number; className?: string }> = ({
-  baseVelocity = 50,
+  baseVelocity = 30,
   className = '',
 }) => {
   const baseX = useMotionValue(0);

@@ -10,7 +10,7 @@ const SectionMain: React.FC<SectionProps> = ({ className }) => {
   return (
     <>
       <div
-        className={` flex flex-col justify-start  items-center mt-20 ${className}`}
+        className={` flex flex-col justify-start  items-center ${className}`}
       >
         <TextFade direction={'up'} duration={2.2} delay={0.2}>
           <div className="font-staatliches text-[clamp(3rem,20vw,13rem)]">
@@ -20,9 +20,9 @@ const SectionMain: React.FC<SectionProps> = ({ className }) => {
 
         <GithubLoginButton />
       </div>
-      <div className="flex items-center gap-7">
+      {/* <div className="flex items-center gap-7">
         <ScrollBanner className="mt-10" baseVelocity={2} />
-      </div>
+      </div> */}
     </>
   );
 };
