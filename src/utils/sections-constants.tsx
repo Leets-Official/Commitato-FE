@@ -1,7 +1,7 @@
 import ScrollBanner from '@/components/main/Banner';
 import Comment1Svg from '@/assets/icon/ic_main_comment1.svg?react';
 import SectionMain from '@/components/main/SectionMain';
-import HowText from '@/pages/Main/components/HowText';
+import HowText from '@/components/main/HowText';
 
 export const sections = [
   { id: 1, title: <SectionMain />, content: null },

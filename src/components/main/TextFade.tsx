@@ -5,9 +5,8 @@ export function TextFade({
   direction,
   children,
   className = '',
-  staggerChildren = 0.1,
   duration = 0.8,
-  delay = 0,
+  delay = 0.1,
 }: {
   direction: 'up' | 'down';
   children: React.ReactNode;
@@ -16,34 +15,37 @@ export function TextFade({
   duration?: number;
   delay?: number;
 }) {
-  const FADE_DOWN = {
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { type: 'spring', delay: delay, duration: duration },
-    },
-    hidden: { opacity: 0, y: direction === 'down' ? -18 : 18 },
-  };
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
-      animate={isInView ? 'show' : ''}
-      variants={{
-        hidden: {},
-        show: {
-          transition: {
-            staggerChildren: staggerChildren,
-          },
-        },
+      initial={{ opacity: 0, y: direction === 'down' ? -50 : 50 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { delay, duration, ease: 'easeOut' },
       }}
+      viewport={{ once: false, amount: 0.2 }}
       className={className}
     >
       {React.Children.map(children, child =>
         React.isValidElement(child) ? (
-          <motion.div variants={FADE_DOWN}>{child}</motion.div>
+          <motion.div
+            initial="hidden"
+            animate={isInView ? 'show' : 'hidden'}
+            variants={{
+              hidden: { opacity: 0, y: direction === 'down' ? -50 : 50 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: { delay, duration, ease: 'easeOut' },
+              },
+            }}
+          >
+            {child}
+          </motion.div>
         ) : (
           child
         ),

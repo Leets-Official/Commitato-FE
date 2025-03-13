@@ -30,7 +30,7 @@ const ScrollBanner: React.FC<{ baseVelocity?: number; className?: string }> = ({
   const x = useTransform(baseX, v => `${wrap(-20, -45, v)}%`);
 
   const directionFactor = useRef(1);
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((_, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     if (velocityFactor.get() < 0) {

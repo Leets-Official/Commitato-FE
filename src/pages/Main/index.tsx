@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { sections } from '@/utils/sections-constants';
-import SectionWrapper from '@/pages/Main/components/SectionWrapper';
+import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
 
 const MainPage = () => {
