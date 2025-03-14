@@ -16,29 +16,17 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
   return (
     <div
       className={`w-full flex flex-col items-center justify-center min-h-screen 
-        px-24 space-y-36 ${className}`}
+        px-36 space-y-36 ${className}`}
     >
       {title && <div>{title}</div>}
 
       {content && (
         <div
-          className={`w-full flex items-center ${
-            align === 'left' ? 'justify-between' : 'justify-between'
+          className={`w-full flex ${
+            align === 'left' ? 'justify-start' : 'justify-end'
           }`}
         >
-          {align === 'left' && (
-            <>
-              {content}
-              <div className="w-1/2" />
-            </>
-          )}
-
-          {align === 'right' && (
-            <>
-              <div className="w-1/2" />
-              {content}
-            </>
-          )}
+          {content}
         </div>
       )}
     </div>

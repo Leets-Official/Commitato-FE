@@ -17,17 +17,18 @@ const textVariants = {
 
 const HowText: React.FC = () => {
   return (
-    <div className="flex flex-col items-center gap-12 font-staatliches w-full">
+    <div className="flex flex-col gap-8 font-staatliches w-full items-start mx-auto pl-12 mt-36">
       <motion.div
         initial="offscreen"
         whileInView="onscreen"
         variants={textVariants}
         exit={{ opacity: 0 }}
-        className="w-full flex justify-center"
+        className="w-full flex justify-start"
       >
         <HowTextItem
-          size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
+          size="lg:text-[150px] md:text-[130px] sm:text-[100px]"
           color="text-black"
+          extraStyles="text-left"
         />
       </motion.div>
 
@@ -39,8 +40,9 @@ const HowText: React.FC = () => {
         className="w-full flex justify-center"
       >
         <HowTextItem
-          size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
+          size="lg:text-[150px] md:text-[130px] sm:text-[100px]"
           color="text-[#4d3e1a]"
+          extraStyles="text-center"
         />
       </motion.div>
 
@@ -49,11 +51,12 @@ const HowText: React.FC = () => {
         whileInView="onscreen"
         variants={textVariants}
         exit={{ opacity: 0 }}
-        className="w-full flex justify-center"
+        className="w-full flex justify-end"
       >
         <HowTextItem
-          size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
+          size="lg:text-[150px] md:text-[130px] sm:text-[100px]"
           color="text-[#cca644]"
+          extraStyles="text-right"
         />
       </motion.div>
     </div>
@@ -73,5 +76,7 @@ const HowTextItem: React.FC<HowTextItemProps> = ({
   color,
   extraStyles,
 }) => {
-  return <div className={`${size} ${color} text-center`}>HOW?</div>;
+  return (
+    <div className={`${size} ${color} ${extraStyles} text-center`}>HOW?</div>
+  );
 };

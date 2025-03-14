@@ -7,8 +7,8 @@ export const sections = [
     id: 1,
     title: <ScrollBanner baseVelocity={2} />,
     content: (
-      <div className="flex flex-col items-start gap-4">
-        <Comment1Svg width="100%" />
+      <div className="flex flex-col w-full items-start gap-12">
+        <Comment1Svg width="60%" />
         <HowText />
       </div>
     ),
