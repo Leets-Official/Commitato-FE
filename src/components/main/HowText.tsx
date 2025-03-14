@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 
 const textVariants = {
   offscreen: {
-    y: 500,
+    y: 100,
   },
   onscreen: {
-    y: 200,
+    y: 0,
     rotate: 0,
     transition: {
       type: 'spring',
@@ -17,17 +17,17 @@ const textVariants = {
 
 const HowText: React.FC = () => {
   return (
-    <div className="flex flex-col items-start gap-12 font-staatliches ">
+    <div className="flex flex-col items-center gap-12 font-staatliches w-full">
       <motion.div
         initial="offscreen"
         whileInView="onscreen"
         variants={textVariants}
         exit={{ opacity: 0 }}
+        className="w-full flex justify-center"
       >
         <HowTextItem
           size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
           color="text-black"
-          extraStyles="ml-[-450px]"
         />
       </motion.div>
 
@@ -36,6 +36,7 @@ const HowText: React.FC = () => {
         whileInView="onscreen"
         variants={textVariants}
         exit={{ opacity: 0 }}
+        className="w-full flex justify-center"
       >
         <HowTextItem
           size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
@@ -48,11 +49,11 @@ const HowText: React.FC = () => {
         whileInView="onscreen"
         variants={textVariants}
         exit={{ opacity: 0 }}
+        className="w-full flex justify-center"
       >
         <HowTextItem
           size="lg:text-[180px] md:text-[150px] sm:text-[120px]"
           color="text-[#cca644]"
-          extraStyles="ml-[390px]"
         />
       </motion.div>
     </div>
@@ -72,5 +73,5 @@ const HowTextItem: React.FC<HowTextItemProps> = ({
   color,
   extraStyles,
 }) => {
-  return <div className={`${size} ${color} ${extraStyles}`}>HOW?</div>;
+  return <div className={`${size} ${color} text-center`}>HOW?</div>;
 };

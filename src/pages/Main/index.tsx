@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import { sections } from '@/utils/sections-constants';
 import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
+import SectionMain from '@/components/main/SectionMain';
 
 const MainPage = () => {
   return (
@@ -12,12 +13,19 @@ const MainPage = () => {
       <BackgroundController />
 
       <div className="relative h-auto">
-        <div className="relative flex flex-col items-center justify-center">
+        <div className="relative flex flex-col">
+          <div
+            className="w-full flex flex-col items-center justify-center min-h-screen 
+        px-6 md:px-16 lg:px-24 max-w-screen-lg mx-auto"
+          >
+            <SectionMain />
+          </div>
           {sections.map(section => (
             <SectionWrapper
               key={section.id}
               title={section.title}
               content={section.content}
+              align={section.align}
             />
           ))}
         </div>

@@ -1,25 +1,46 @@
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface SectionWrapperProps {
   title?: ReactNode;
   content?: ReactNode;
   className?: string;
+  align?: string;
 }
 
 const SectionWrapper: React.FC<SectionWrapperProps> = ({
   title,
   content,
   className,
+  align = 'left',
 }) => {
   return (
     <div
       className={`w-full flex flex-col items-center justify-center min-h-screen 
-        px-6 md:px-16 lg:px-24 max-w-screen-lg mx-auto ${className}`}
+        px-24 space-y-36 ${className}`}
     >
       {title && <div>{title}</div>}
 
-      {content && <div className="w-full flex justify-center">{content}</div>}
+      {content && (
+        <div
+          className={`w-full flex items-center ${
+            align === 'left' ? 'justify-between' : 'justify-between'
+          }`}
+        >
+          {align === 'left' && (
+            <>
+              {content}
+              <div className="w-1/2" />
+            </>
+          )}
+
+          {align === 'right' && (
+            <>
+              <div className="w-1/2" />
+              {content}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };
