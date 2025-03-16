@@ -4,6 +4,9 @@ import Comment2Svg from '@/assets/icon/ic_main_how_comment.svg?react';
 import Comment3Svg from '@/assets/icon/ic_main_commit_comment.svg?react';
 import Comment4Svg from '@/assets/icon/ic_main_ranking_comment.svg?react';
 import RankingSvg from '@/assets/icon/ic_main_ranking.svg?react';
+import CommitSvg from '@/assets/icon/ic_main_commit.svg?react';
+import { levelMap } from '@/constants/levelMap.constant';
+import { motion } from 'framer-motion';
 
 export const sections = [
   {
@@ -18,8 +21,36 @@ export const sections = [
     align: 'left',
   },
   { id: 2, title: '', content: <Comment2Svg width="60%" />, align: 'right' },
-  { id: 3, title: '', content: '', align: 'center' },
-  { id: 4, title: <Comment3Svg width="70%" />, content: '', align: 'left' },
+  {
+    id: 3,
+    title: '',
+    content: (
+      <div className="flex flex-col justify-center items-center gap-16 mb-52">
+        {Object.entries(levelMap).map(
+          ([name, { image: PotatoImage, description }]) => (
+            <div className="flex flex-col items-center justify-center gap-8">
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <PotatoImage
+                  key={name}
+                  className="w-48 h-auto cursor-pointer"
+                />
+              </motion.div>
+              <div className="text-grey text-assistive font-ExtraBold leading-[140%] tracking-[3%]">
+                {description}
+              </div>
+            </div>
+          ),
+        )}
+      </div>
+    ),
+    align: 'center',
+  },
+  {
+    id: 4,
+    title: <Comment3Svg width="60%" />,
+    content: <CommitSvg width="70%" />,
+    align: 'left',
+  },
   {
     id: 5,
     title: <Comment4Svg width="60%" />,
@@ -28,6 +59,15 @@ export const sections = [
     align: 'right',
   },
   { id: 6, title: '', content: '', align: 'right' },
-  { id: 7, title: '', content: '', align: 'left' },
-  { id: 8, title: '', content: '', align: 'right' },
+  {
+    id: 7,
+    title: (
+      <div className="text-white text-center font-Bold text-captionHeader leading-[140%] tracking-[3%] space-y-[21px]">
+        <div>COMMITATO와 함께하는 1일 1커밋,</div>
+        <div>지금 시작하세요.</div>
+      </div>
+    ),
+    content: '',
+    align: 'center',
+  },
 ] as const;
