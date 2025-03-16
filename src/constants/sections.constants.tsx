@@ -5,8 +5,7 @@ import Comment3Svg from '@/assets/icon/ic_main_commit_comment.svg?react';
 import Comment4Svg from '@/assets/icon/ic_main_ranking_comment.svg?react';
 import RankingSvg from '@/assets/icon/ic_main_ranking.svg?react';
 import CommitSvg from '@/assets/icon/ic_main_commit.svg?react';
-import { levelMap } from '@/constants/levelMap.constant';
-import { motion } from 'framer-motion';
+import PotatoSection from '@/components/main/PotatoSection';
 
 export const sections = [
   {
@@ -24,25 +23,7 @@ export const sections = [
   {
     id: 3,
     title: '',
-    content: (
-      <div className="flex flex-col justify-center items-center gap-16 mb-52">
-        {Object.entries(levelMap).map(
-          ([name, { image: PotatoImage, description }]) => (
-            <div className="flex flex-col items-center justify-center gap-8">
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <PotatoImage
-                  key={name}
-                  className="w-48 h-auto cursor-pointer"
-                />
-              </motion.div>
-              <div className="text-grey text-assistive font-ExtraBold leading-[140%] tracking-[3%]">
-                {description}
-              </div>
-            </div>
-          ),
-        )}
-      </div>
-    ),
+    content: <PotatoSection />,
     align: 'center',
   },
   {
