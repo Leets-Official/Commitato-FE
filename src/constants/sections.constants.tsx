@@ -43,7 +43,7 @@ export const sections = [
   {
     id: 7,
     title: (
-      <div className="text-white text-center font-Bold text-captionHeader leading-[140%] tracking-[3%] space-y-[21px]">
+      <div className="text-white text-center font-Bold lg:text-captionHeader sm:text-small md:text-body leading-[140%] tracking-[3%] space-y-[21px]">
         <div>COMMITATO와 함께하는 1일 1커밋,</div>
         <div>지금 시작하세요.</div>
       </div>
