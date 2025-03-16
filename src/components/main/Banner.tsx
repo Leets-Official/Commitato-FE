@@ -53,8 +53,8 @@ const ScrollBanner: React.FC<{ baseVelocity?: number; className?: string }> = ({
           .fill(null)
           .map((_, index) => (
             <div key={index} className="flex items-center gap-6">
-              <BannerIcon className="w-[160px]" />
-              <span className="tracking-wider text-[#333]">
+              <BannerIcon className="w-[100px] sm:w-[120px] md:w-[140px] lg:w-[160px] xl:w-[180px]" />
+              <span className="tracking-wider text-[#333] sm:text-4xl md:text-5xl lg:text-7xl">
                 ABOUT &nbsp; COMMITATO
               </span>
             </div>

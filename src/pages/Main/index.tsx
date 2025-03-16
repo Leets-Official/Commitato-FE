@@ -1,9 +1,10 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { sections } from '@/utils/sections-constants';
+import { sections } from '@/constants/sections.constants';
 import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
 import SectionMain from '@/components/main/SectionMain';
+import ScrollBanner from '@/components/main/Banner';
 
 const MainPage = () => {
   return (
@@ -20,6 +21,7 @@ const MainPage = () => {
           >
             <SectionMain />
           </div>
+          <ScrollBanner baseVelocity={20} className="mb-44" />
           {sections.map(section => (
             <SectionWrapper
               key={section.id}
