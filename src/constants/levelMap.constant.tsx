@@ -12,7 +12,7 @@ interface LevelInfo {
   nextLevel: string;
   image: React.FC<React.SVGProps<SVGSVGElement>>;
   comment?: React.FC<React.SVGProps<SVGSVGElement>>;
-  description?: string;
+  description?: React.ReactNode;
 }
 
 export const levelMap: Record<string, LevelInfo> = {
@@ -27,21 +27,42 @@ export const levelMap: Record<string, LevelInfo> = {
     nextLevel: '개발자 감자',
     image: SecondCommitato,
     comment: SecondCommitatoComment,
-    description:
-      '말하는 감자는 어느 정도 경험을 쌓은 감자에요. 이제 기본적인 대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더 높아졌습니다. (포인트 범위: 1000-14999 포인트)',
+    description: (
+      <div className="flex flex-col justify-center items-center">
+        <div>말하는 감자는 어느 정도 경험을 쌓은 감자에요.</div>
+        <div>
+          이제 기본적인 대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더
+          높아졌습니다. (포인트 범위: 1000-14999 포인트)
+        </div>
+      </div>
+    ),
   },
   '개발자 감자': {
     nextLevel: 'CEO 감자',
     image: ThirdCommitato,
     comment: ThirdCommitatoComment,
-    description:
-      '개발자 감자는 충분한 경험을 통해 개발에 익숙해진 감자입니다. 다양한 기술과 도구를 능숙하게 다룰 수 있습니다. (포인트 범위: 15000-29999 포인트)',
+    description: (
+      <div className="flex flex-col justify-center items-center">
+        <div>개발자 감자는 충분한 경험을 통해 개발에 익숙해진 감자입니다.</div>
+        <div>
+          다양한 기술과 도구를 능숙하게 다룰 수 있습니다. (포인트 범위:
+          15000-29999 포인트)
+        </div>
+      </div>
+    ),
   },
   'CEO 감자': {
     nextLevel: '',
     image: FourthCommitato,
     comment: FourthCommitatoComment,
-    description:
-      'CEO 감자는 커밋테이토의 최정상 단계의 감자입니다. 이제 프로젝트를 이끌고, 팀을 관리하는 능력을 갖추었습니다. 다른 감자들에게 영감을 주는 리더입니다. (포인트 범위: 30000 포인트 이상)',
+    description: (
+      <div className="flex flex-col justify-center items-center">
+        <div>CEO 감자는 커밋테이토의 최정상 단계의 감자입니다.</div>
+        <div>
+          이제 프로젝트를 이끌고, 팀을 관리하는 능력을 갖추었습니다. 다른
+          감자들에게 영감을 주는 리더입니다. (포인트 범위: 30000 포인트 이상)
+        </div>
+      </div>
+    ),
   },
 } as const;
