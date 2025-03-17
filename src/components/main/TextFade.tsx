@@ -7,6 +7,7 @@ export function TextFade({
   className = '',
   duration = 0.8,
   delay = 0.1,
+  repeat = 0,
 }: {
   direction: 'up' | 'down';
   children: React.ReactNode;
@@ -14,6 +15,7 @@ export function TextFade({
   staggerChildren?: number;
   duration?: number;
   delay?: number;
+  repeat?: number;
 }) {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
@@ -25,7 +27,13 @@ export function TextFade({
       whileInView={{
         opacity: 1,
         y: 0,
-        transition: { delay, duration, ease: 'easeOut' },
+        transition: {
+          delay,
+          duration,
+          ease: 'easeOut',
+          repeat,
+          repeatType: repeat ? 'reverse' : undefined,
+        },
       }}
       viewport={{ once: false, amount: 0.2 }}
       className={className}

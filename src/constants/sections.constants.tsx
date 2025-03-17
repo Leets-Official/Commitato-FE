@@ -6,6 +6,7 @@ import Comment4Svg from '@/assets/icon/ic_main_ranking_comment.svg?react';
 import RankingSvg from '@/assets/icon/ic_main_ranking.svg?react';
 import CommitSvg from '@/assets/icon/ic_main_commit.svg?react';
 import PotatoSection from '@/components/main/PotatoSection';
+import { TextFade } from '@/components/main/TextFade';
 
 export const sections = [
   {
@@ -43,10 +44,12 @@ export const sections = [
   {
     id: 7,
     title: (
-      <div className="text-white text-center font-Bold lg:text-captionHeader sm:text-small md:text-body leading-[140%] tracking-[3%] space-y-[21px]">
-        <div>COMMITATO와 함께하는 1일 1커밋,</div>
-        <div>지금 시작하세요.</div>
-      </div>
+      <TextFade direction={'up'} duration={2.2} delay={0.2} repeat={Infinity}>
+        <div className="text-white text-center font-Bold lg:text-captionHeader sm:text-small md:text-body leading-[140%] tracking-[3%] space-y-[21px]">
+          <div>COMMITATO와 함께하는 1일 1커밋,</div>
+          <div>지금 시작하세요.</div>
+        </div>
+      </TextFade>
     ),
     content: '',
     align: 'center',
