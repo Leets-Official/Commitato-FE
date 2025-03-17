@@ -1,7 +1,7 @@
-import FirstCommitato from '@/assets/icon/firstCommitato.svg?react';
-import SecondCommitato from '@/assets/icon/secondCommitato.svg?react';
-import ThirdCommitato from '@/assets/icon/thirdCommitato.svg?react';
-import FourthCommitato from '@/assets/icon/fourthCommitato.svg?react';
+import FirstCommitato from '@/assets/icon/ic_firstCommitato.svg?react';
+import SecondCommitato from '@/assets/icon/ic_secondCommitato.svg?react';
+import ThirdCommitato from '@/assets/icon/ic_thirdCommitato.svg?react';
+import FourthCommitato from '@/assets/icon/ic_fourthCommitato.svg?react';
 
 import FirstCommitatoComment from '@/assets/icon/ic_main_firstCommitato_comment.svg?react';
 import SecondCommitatoComment from '@/assets/icon/ic_main_secondCommitato_comment.svg?react';

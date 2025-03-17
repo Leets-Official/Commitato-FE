@@ -1,4 +1,4 @@
-import FirstCommitato from '@/assets/icon/firstCommitato.svg?react';
+import FirstCommitato from '@/assets/icon/ic_firstCommitato.svg?react';
 import { UserTypes } from 'commitato-types';
 
 interface ProfileCardProps {

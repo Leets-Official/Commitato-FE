@@ -7,7 +7,7 @@ export const descriptions: Record<string, React.ReactNode> = {
       <div className="relative inline-block">
         아직은 많은 것을 배우고 익혀야 하는 단계입니다.
         <span className="relative">
-          <LottieHighlight className="bottom-[50px] left-[135px]" />
+          <LottieHighlight className="bottom-[55px] left-[135px]" />
           <span>(포인트 범위: 0 - 29,999 포인트)</span>
         </span>
       </div>
@@ -20,7 +20,7 @@ export const descriptions: Record<string, React.ReactNode> = {
         이제 기본적인 대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더
         높아졌습니다.
         <span className="relative">
-          <LottieHighlight className="bottom-[65px] left-[135px]" />
+          <LottieHighlight className="bottom-[70px] left-[145px]" />
           <span>(포인트 범위: 30,000 - 149,999 포인트)</span>
         </span>
       </div>
