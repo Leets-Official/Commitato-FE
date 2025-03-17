@@ -1,7 +1,7 @@
 import { UserTypes } from 'commitato-types';
 import { useState } from 'react';
 import QuestionMark from '@/assets/icon/ic_question_mark.svg?react';
-import QuestionMarkModal from '../modal/QuestioniMarkModal';
+import LevelMapModal from '@/components/modal/LevelMapModal';
 import UpdateButton from '@/components/myPage/UpdateButton';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
@@ -129,7 +129,7 @@ const ProfileCard = ({ user, setUser }: ProfileCardProps) => {
         </div>
       </div>
       {isModalOpen && (
-        <QuestionMarkModal
+        <LevelMapModal
           onClose={() => setIsModalOpen(false)}
           position={position}
         />
