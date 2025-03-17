@@ -20,7 +20,12 @@ export const sections = [
     ),
     align: 'left',
   },
-  { id: 2, title: '', content: <Comment2Svg width="60%" />, align: 'right' },
+  {
+    id: 2,
+    title: '',
+    content: <Comment2Svg width="60%" />,
+    align: 'right',
+  },
   {
     id: 3,
     title: '',
@@ -29,15 +34,24 @@ export const sections = [
   },
   {
     id: 4,
-    title: <Comment3Svg width="60%" />,
-    content: <CommitSvg width="70%" />,
+    title: (
+      <TextFade direction={'left'} duration={2.2} delay={0.2}>
+        <Comment3Svg width="60%" />
+        <CommitSvg width="70%" />
+      </TextFade>
+    ),
+    content: '',
     align: 'left',
   },
   {
     id: 5,
-    title: <Comment4Svg width="60%" />,
-    content: <RankingSvg width="70%" />,
-
+    title: (
+      <TextFade direction={'right'} duration={2.2} delay={0.2}>
+        <Comment4Svg width="60%" />
+        <RankingSvg width="70%" />
+      </TextFade>
+    ),
+    content: '',
     align: 'right',
   },
   { id: 6, title: '', content: '', align: 'right' },

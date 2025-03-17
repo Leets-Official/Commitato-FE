@@ -9,7 +9,7 @@ export function TextFade({
   delay = 0.1,
   repeat = 0,
 }: {
-  direction: 'up' | 'down';
+  direction: 'up' | 'down' | 'left' | 'right';
   children: React.ReactNode;
   className?: string;
   staggerChildren?: number;
@@ -20,10 +20,25 @@ export function TextFade({
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
+  const getInitialPosition = () => {
+    switch (direction) {
+      case 'up':
+        return { opacity: 0, y: 50 };
+      case 'down':
+        return { opacity: 0, y: -50 };
+      case 'left':
+        return { opacity: 0, x: 50 };
+      case 'right':
+        return { opacity: 0, x: -50 };
+      default:
+        return { opacity: 0, y: 50 };
+    }
+  };
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: direction === 'down' ? -50 : 50 }}
+      initial={getInitialPosition()}
       whileInView={{
         opacity: 1,
         y: 0,
