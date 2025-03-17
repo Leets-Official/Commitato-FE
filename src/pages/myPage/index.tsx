@@ -5,17 +5,31 @@ import ProfileCard from '@/components/myPage/ProfileCard';
 import MyCommitFarm from '@/components/myPage/MyCommitFarm';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { UserTypes } from 'commitato-types';
-
-const userData: UserTypes = {
-  githubId: 'woneeeee',
-  ranking: 10,
-  level: '바보 감자',
-  commit: 3,
-  todayCommit: 30,
-  totalCommit: 121,
-};
+import { useEffect, useState } from 'react';
+import MyPageUser from '@/apis/myPage/user.api';
+import updateCommit from '@/apis/myPage/commitUpdate.api';
 
 const MyPage = () => {
+  const [userData, setUserData] = useState<UserTypes | null>(null);
+  const githubId = localStorage.getItem('githubId');
+
+  useEffect(() => {
+    if (!githubId) return;
+
+    const fetchUserData = async () => {
+      await updateCommit();
+
+      const data = await MyPageUser(githubId);
+      console.log(data);
+      if (data) setUserData(data);
+    };
+    fetchUserData();
+  }, [githubId]);
+
+  if (!userData) {
+    return <div className="text-white text-center mt-10">Loading...</div>;
+  }
+
   return (
     <div className="bg-black min-h-screen flex flex-col">
       <Header />
@@ -23,7 +37,7 @@ const MyPage = () => {
         <p className="font-staatliches text-header">MY PAGE</p>
         <Line />
         <div className="mt-3">
-          <ProfileCard user={userData} />
+          <ProfileCard user={userData} setUser={setUserData} />
         </div>
         <div className="flex w-full mt-5 justify-evenly">
           <div className="w-[60%]">
