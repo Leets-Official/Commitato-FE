@@ -16,14 +16,14 @@ const BackgroundController = () => {
   }, [sectionHeight]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10 transition-all duration-1000 ease-in-out">
+    <div className="fixed top-0 left-0 w-full h-full z-10 transition-all duration-1000 ease-in-out">
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-[#FFCF55] transition-opacity duration-1000 ${
+        className={`absolute top-0 left-0 w-full h-full  bg-yellow-100 transition-opacity duration-1000 ${
           activeIndex < 2 ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#FFCF55] to-[#000] transition-opacity duration-1000 ${
+        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b from-yellow-100 to-[#000] transition-opacity duration-1000 ${
           activeIndex === 2 ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -33,17 +33,17 @@ const BackgroundController = () => {
         }`}
       />
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#000] to-[#FFCF55] transition-opacity duration-1000 ${
+        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#000] to-yellow-100 transition-opacity duration-1000 ${
           activeIndex === 5 ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
-        className={`absolute top-0 left-0 w-full h-full bg-[#FFCF55] transition-opacity duration-1000 ${
+        className={`absolute top-0 left-0 w-full h-full bg-yellow-100 transition-opacity duration-1000 ${
           activeIndex >= 6 && activeIndex < 8 ? 'opacity-100' : 'opacity-0'
         }`}
       />
       <div
-        className={`absolute top-0 left-0 w-full h-[150vh] bg-gradient-to-b from-[#FFCF55] via-[#000] to-[#000] transition-opacity duration-1000 ${
+        className={`absolute top-0 left-0 w-full h-[150vh] bg-gradient-to-b from-yellow-100 via-[#000] to-[#000] transition-opacity duration-1000 ${
           activeIndex === 8 ? 'opacity-100' : 'opacity-0'
         }`}
       />
