@@ -1,36 +1,40 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import GithubLoginButton from '@/components/main/GithubLogin';
-import WelcomeModal from '@/components/modal/WelcomeModal';
-import { useEffect, useState } from 'react';
+import { sections } from '@/constants/sections.constants';
+import SectionWrapper from '@/components/main/SectionWrapper';
+import BackgroundController from '@/components/main/BackgroundController';
+import SectionMain from '@/components/main/SectionMain';
+import ScrollBanner from '@/components/main/Banner';
 
 const MainPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [githubId, setGithubId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    const storedGithubId = localStorage.getItem('githubId');
-
-    if (accessToken && storedGithubId) {
-      setGithubId(storedGithubId);
-      setIsModalOpen(true);
-    }
-  }, []);
-
   return (
-    <>
+    <div className="overflow-x-hidden relative w-screen min-w-screen min-h-screen">
       <Header />
-      <GithubLoginButton />
-      main
-      <Footer isMainPage />
-      {isModalOpen && (
-        <WelcomeModal
-          onClose={() => setIsModalOpen(false)}
-          githubId={githubId}
-        />
-      )}
-    </>
+
+      <BackgroundController />
+
+      <div className="relative h-auto">
+        <div className="relative flex flex-col">
+          <div
+            className="w-full flex flex-col items-center justify-center min-h-screen 
+        px-6 md:px-16 lg:px-24 max-w-screen-lg mx-auto"
+          >
+            <SectionMain />
+          </div>
+          <ScrollBanner baseVelocity={20} className="mb-44" />
+          {sections.map(section => (
+            <SectionWrapper
+              key={section.id}
+              title={section.title}
+              content={section.content}
+              align={section.align}
+            />
+          ))}
+        </div>
+
+        <Footer isMainPage />
+      </div>
+    </div>
   );
 };
 

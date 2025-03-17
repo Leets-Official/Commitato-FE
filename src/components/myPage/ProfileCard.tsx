@@ -1,3 +1,4 @@
+import FirstCommitato from '@/assets/icon/ic_firstCommitato.svg?react';
 import { UserTypes } from 'commitato-types';
 import { useState } from 'react';
 import QuestionMark from '@/assets/icon/ic_question_mark.svg?react';
