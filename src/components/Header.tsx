@@ -16,7 +16,7 @@ const Header: React.FC = () => {
           <Link to="/" className="font-staatliches text-body">
             COMMITATO
           </Link>
-          <div className="space-x-8 ">
+          <div className="space-x-8">
             <Link
               to="/"
               className={`text-assistive ${location.pathname === '/' ? 'text-black' : 'text-grey hover:text-black'} `}
