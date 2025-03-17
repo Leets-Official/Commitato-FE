@@ -8,6 +8,10 @@ interface ProfileCardProps {
 }
 
 const CommitStats = ({ user }: ProfileCardProps) => {
+  const handleGithub = () => {
+    window.open(`https://github.com/${user.githubId}`, '_blank');
+  };
+
   return (
     <div className="text-black flex flex-col p-2 w-full">
       {statsData.map(({ label, valueKey }, index) => (
@@ -22,7 +26,7 @@ const CommitStats = ({ user }: ProfileCardProps) => {
         </>
       ))}
       <div className="flex items-center justify-between">
-        <div className="flex items-center ml-2">
+        <div className="flex items-center ml-2" onClick={handleGithub}>
           <Github />
           <p className="font-staatliches text-[32px]">GitHub</p>
         </div>
