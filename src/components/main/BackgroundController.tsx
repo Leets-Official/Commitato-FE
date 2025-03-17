@@ -16,7 +16,7 @@ const BackgroundController = () => {
   }, [sectionHeight]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-10 transition-all duration-1000 ease-in-out">
+    <div className="fixed top-0 left-0 w-full h-full -z-10 transition-all duration-1000 ease-in-out">
       <div
         className={`absolute top-0 left-0 w-full h-full  bg-yellow-100 transition-opacity duration-1000 ${
           activeIndex < 2 ? 'opacity-100' : 'opacity-0'
