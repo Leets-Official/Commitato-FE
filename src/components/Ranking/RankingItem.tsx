@@ -2,6 +2,7 @@ import React from 'react';
 import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
 import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
 import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
+import { useNavigate } from 'react-router-dom';
 
 export interface RankingItemProps {
   ranking: number;
@@ -22,6 +23,12 @@ const RankingItem: React.FC<RankingItemProps> = ({
   change,
   isMe,
 }) => {
+  const nav = useNavigate();
+
+  const handleIdClick = () => {
+    nav(`/mypage/${githubId}`);
+  };
+
   const getIcon = () => {
     switch (change) {
       case 'up':
@@ -44,7 +51,7 @@ const RankingItem: React.FC<RankingItemProps> = ({
         )}
         <span
           className="cursor-pointer hover:underline"
-          onClick={() => alert(`${githubId} 프로필로 이동`)}
+          onClick={handleIdClick}
         >
           {githubId}
         </span>
