@@ -27,7 +27,17 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
 export const getUserIdApi = async (githubId: string) => {
   try {
     const res = await api.get(`${PATH}/search/${githubId}`);
-    return res.data.result;
+
+    if (res.data?.result) {
+      const myGithubId = localStorage.getItem('githubId');
+
+      return {
+        ...res.data.result,
+        isMe: res.data.result.githubId === myGithubId,
+      };
+    } else {
+      return null;
+    }
   } catch (error) {
     error instanceof Error
       ? error.message

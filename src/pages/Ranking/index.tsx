@@ -4,7 +4,6 @@ import SearchIcon from '@/assets/icon/ic_ranking_search.svg?react';
 import Footer from '@/components/Footer';
 import RankingList from '@/components/Ranking/RankingList';
 import { useState } from 'react';
-import { getUserIdApi } from '@/apis/ranking/ranking.api';
 
 const RankingPage = () => {
   const [searchId, setSearchId] = useState('');
@@ -13,15 +12,8 @@ const RankingPage = () => {
   const handleSearch = async () => {
     if (searchId.trim() === '') {
       setFilteredUser(null);
-      return;
-    }
-
-    try {
-      const user = await getUserIdApi(searchId);
-      console.log('user', user);
-      setFilteredUser(user?.githubId || null);
-    } catch (error) {
-      setFilteredUser(null);
+    } else {
+      setFilteredUser(searchId);
     }
   };
 

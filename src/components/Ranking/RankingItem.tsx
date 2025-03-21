@@ -3,7 +3,7 @@ import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
 import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
 import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
 
-interface RankingItemProps {
+export interface RankingItemProps {
   ranking: number;
   githubId: string;
   tierName: string;

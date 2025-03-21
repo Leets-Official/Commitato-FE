@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import RankingItem from '@/components/Ranking/RankingItem';
+import RankingItem, {
+  RankingItemProps,
+} from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
-import { getRankingApi } from '@/apis/ranking/ranking.api';
+import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 
 interface RankingListProps {
   searchId: string | null;
@@ -10,31 +12,58 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const [rankingData, setRankingData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [myRanking, setMyRanking] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchRanking = async () => {
       try {
         setIsLoading(true);
-        const data = await getRankingApi();
+        const data: RankingItemProps[] = await getRankingApi();
         setRankingData(data);
+        const myRank = data.find(item => item.isMe || null);
+        setMyRanking(myRank);
+
+        setError(null);
       } catch (error) {
         setError('랭킹 데이터를 불러오는 중 오류가 발생했습니다.');
       } finally {
         setIsLoading(false);
       }
     };
+    if (!searchId) {
+      fetchRanking();
+    }
+  }, [searchId]);
 
-    fetchRanking();
-  }, []);
-
-  const filteredData = searchId
-    ? rankingData.filter(item => item.githubId === searchId)
-    : rankingData;
-
-  const myRanking = rankingData.find(item => item.isMe) || null;
+  useEffect(() => {
+    if (searchId) {
+      const fetchUser = async () => {
+        try {
+          setIsLoading(true);
+          const user = await getUserIdApi(searchId);
+          setRankingData(user ? [user] : []);
+          setError(null);
+        } catch (error: any) {
+          if (error.response?.status === 404) {
+            setError(error.response.data.message);
+          } else {
+            setError('검색 중 오류가 발생했습니다.');
+          }
+          setRankingData([]);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchUser();
+    }
+  }, [searchId]);
 
   if (isLoading) {
-    return <p className="text-center text-grey font-Bold">로딩 중...</p>;
+    return (
+      <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
+        로딩 중...
+      </p>
+    );
   }
 
   if (error) {
@@ -52,10 +81,12 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
       </div>
 
       <div className="w-full min-h-[50vh]">
-        {filteredData.length > 0 ? (
-          filteredData.map(data => <RankingItem key={data.userId} {...data} />)
+        {error ? (
+          <p className="text-center text-red-500 font-Bold mt-4">{error}</p>
+        ) : rankingData.length > 0 ? (
+          rankingData.map(data => <RankingItem key={data.githubId} {...data} />)
         ) : (
-          <p className="text-center text-grey font-Bold">
+          <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
             검색 결과가 없습니다.
           </p>
         )}
