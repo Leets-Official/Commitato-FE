@@ -4,9 +4,32 @@ import SearchIcon from '@/assets/icon/ic_ranking_search.svg?react';
 import Footer from '@/components/Footer';
 import RankingList from '@/components/Ranking/RankingList';
 import { useState } from 'react';
+import { getUserIdApi } from '@/apis/ranking/ranking.api';
 
 const RankingPage = () => {
   const [searchId, setSearchId] = useState('');
+  const [filteredUser, setFilteredUser] = useState<string | null>(null);
+
+  const handleSearch = async () => {
+    if (searchId.trim() === '') {
+      setFilteredUser(null);
+      return;
+    }
+
+    try {
+      const user = await getUserIdApi(searchId);
+      console.log('user', user);
+      setFilteredUser(user?.githubId || null);
+    } catch (error) {
+      setFilteredUser(null);
+    }
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <div className="bg-black min-h-screen flex flex-col">
@@ -21,10 +44,16 @@ const RankingPage = () => {
             placeholder="SEARCH ID"
             value={searchId}
             onChange={e => setSearchId(e.target.value)}
+            onKeyDown={handleKeyPress}
           />
-          <SearchIcon className="absolute right-3 top-1/2 transform -translate-y-4 w-[28px]" />
+          <div
+            onClick={handleSearch}
+            className="absolute right-3 top-1/2 transform -translate-y-4 w-[28px]"
+          >
+            <SearchIcon className="w-[28px] cursor-pointer" />
+          </div>
         </div>
-        <RankingList searchId={searchId} />
+        <RankingList searchId={filteredUser} />
       </main>
       <Footer />
     </div>
