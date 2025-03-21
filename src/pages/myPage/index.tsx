@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import CommitStats from '@/components/myPage/CommitStats';
 import ProfileCard from '@/components/myPage/ProfileCard';
 import MyCommitFarm from '@/components/myPage/MyCommitFarm';

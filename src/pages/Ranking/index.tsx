@@ -1,7 +1,7 @@
-import Header from '@/components/Header';
+import Header from '@/components/common/Header';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import SearchIcon from '@/assets/icon/ic_ranking_search.svg?react';
-import Footer from '@/components/Footer';
+import Footer from '@/components/common/Footer';
 import RankingList from '@/components/Ranking/RankingList';
 import { useState } from 'react';
 

@@ -14,10 +14,14 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
         isMe: item.githubId === myGithubId,
       }));
 
-      return rankingData;
+      return {
+        content: rankingData,
+        totalPages: res.data.result.totalPage,
+        totalElements: res.data.result.totalElements,
+      };
     } else {
       console.error('올바른 응답 데이터가 아닙니다.', res.data);
-      return [];
+      return { content: [], totalPages: 1, totalElements: 0 };
     }
   } catch (error) {
     error instanceof Error ? error.message : '랭킹 조회 오류가 발생했습니다: ';

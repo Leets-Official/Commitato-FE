@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import RankingItem, {
-  RankingItemProps,
-} from '@/components/Ranking/RankingItem';
+import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
+import Pagination from '@/components/common/Pagination';
 
 interface RankingListProps {
   searchId: string | null;
 }
+
 const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const [rankingData, setRankingData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [myRanking, setMyRanking] = useState<any | null>(null);
+  const [page, setPage] = useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
     const fetchRanking = async () => {
       try {
         setIsLoading(true);
-        const data: RankingItemProps[] = await getRankingApi();
-        setRankingData(data);
-        const myRank = data.find(item => item.isMe || null);
-        setMyRanking(myRank);
+        const res = await getRankingApi(page);
+        if (res) {
+          const { content, totalPages } = res;
+          setRankingData(content);
+          setTotalPages(totalPages);
+          console.log('Total Pages:', totalPages);
+          const myRank = content.find(
+            (item: { isMe: boolean }) => item.isMe || null,
+          );
+          setMyRanking(myRank);
+        }
 
         setError(null);
       } catch (error) {
@@ -33,7 +42,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     if (!searchId) {
       fetchRanking();
     }
-  }, [searchId]);
+  }, [page, searchId]);
 
   useEffect(() => {
     if (searchId) {
@@ -91,7 +100,11 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           </p>
         )}
       </div>
-
+      <Pagination
+        totalPages={totalPages}
+        currentPage={page}
+        onPageChange={setPage}
+      />
       {myRanking && (
         <div className="w-full mt-9 pt-3">
           <Line className="w-full" />

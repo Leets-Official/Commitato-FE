@@ -1,5 +1,5 @@
 import Modal from '@/components/modal';
-import Button from '../Button';
+import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 
 interface WelcomeModalProps {
