@@ -5,8 +5,23 @@ import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
 import SectionMain from '@/components/main/SectionMain';
 import ScrollBanner from '@/components/main/Banner';
+import { useEffect, useState } from 'react';
+import WelcomeModal from '@/components/modal/WelcomeModal';
 
 const MainPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [githubId, setGithubId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    const storedGithubId = localStorage.getItem('githubId');
+
+    if (accessToken && storedGithubId) {
+      setGithubId(storedGithubId);
+      setIsModalOpen(true);
+    }
+  }, []);
+
   return (
     <div className="overflow-x-hidden relative w-screen min-w-screen min-h-screen">
       <Header />
@@ -33,6 +48,12 @@ const MainPage = () => {
         </div>
 
         <Footer isMainPage />
+        {isModalOpen && (
+          <WelcomeModal
+            onClose={() => setIsModalOpen(false)}
+            githubId={githubId}
+          />
+        )}
       </div>
     </div>
   );
