@@ -5,7 +5,20 @@ const PATH = '/user';
 export const getRankingApi = async (page: number = 0, size: number = 10) => {
   try {
     const res = await api.get(`${PATH}/ranking`, { params: { page, size } });
-    return res.data.result.content;
+
+    const myGithubId = localStorage.getItem('githubId');
+
+    if (res.data?.result?.content) {
+      const rankingData = res.data.result.content.map((item: any) => ({
+        ...item,
+        isMe: item.githubId === myGithubId,
+      }));
+
+      return rankingData;
+    } else {
+      console.error('올바른 응답 데이터가 아닙니다.', res.data);
+      return [];
+    }
   } catch (error) {
     error instanceof Error ? error.message : '랭킹 조회 오류가 발생했습니다: ';
   }
