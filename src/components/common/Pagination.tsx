@@ -11,23 +11,51 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   if (totalPages <= 1) return null;
 
-  console.log('Total Pages:', totalPages);
-  console.log('Current Page:', currentPage);
+  const pagesPerGroup = 4;
+  const currentGroup = Math.floor(currentPage / pagesPerGroup);
+  const startPage = currentGroup * pagesPerGroup;
+  const endPage = Math.min(startPage + pagesPerGroup, totalPages);
+
   return (
-    <div>
+    <div className="flex justify-center items-center gap-2">
       <button
-        className={`${currentPage === 0 ? 'bg-gray-200 cursor-not-allowed' : 'bg-gray-800'}`}
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 0}
+        onClick={() => {
+          if (startPage > 0) onPageChange(startPage - 1);
+        }}
+        disabled={startPage === 0}
+        className={`font-Regular ${startPage === 0 ? 'text-lightGray cursor-not-allowed' : 'text-black hover:underline'}`}
       >
         이전
       </button>
-      {Array.from({ length: totalPages }, (_, index) => (
-        <button key={index} onClick={() => onPageChange(index)}>
-          {index + 1}
-        </button>
-      ))}
-      <button>다음</button>
+      {Array.from({ length: endPage - startPage }, (_, index) => {
+        const page = startPage + index;
+        return (
+          <button
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`font-Bold ${
+              currentPage === page
+                ? 'text-black underline font-Bold'
+                : 'text-grey hover:text-black'
+            }`}
+          >
+            {page + 1}
+          </button>
+        );
+      })}
+      <button
+        className={`${
+          endPage >= totalPages
+            ? 'text-lightGray cursor-not-allowed'
+            : 'text-black'
+        }`}
+        onClick={() => {
+          if (endPage < totalPages) onPageChange(endPage);
+        }}
+        disabled={endPage >= totalPages}
+      >
+        다음
+      </button>
     </div>
   );
 };

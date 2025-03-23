@@ -25,7 +25,6 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           const { content, totalPages } = res;
           setRankingData(content);
           setTotalPages(totalPages);
-          console.log('Total Pages:', totalPages);
           const myRank = content.find(
             (item: { isMe: boolean }) => item.isMe || null,
           );
@@ -100,13 +99,15 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           </p>
         )}
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={page}
-        onPageChange={setPage}
-      />
+      <div className="flex justify-center ">
+        <Pagination
+          totalPages={totalPages}
+          currentPage={page}
+          onPageChange={setPage}
+        />
+      </div>
       {myRanking && (
-        <div className="w-full mt-9 pt-3">
+        <div className="w-full mt-6 pt-3">
           <Line className="w-full" />
           <RankingItem {...myRanking} />
         </div>
