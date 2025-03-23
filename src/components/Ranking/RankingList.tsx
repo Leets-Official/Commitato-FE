@@ -79,7 +79,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col justify-between min-h-[60vh]">
       <div className="flex py-3 font-ExtraBold text-grey text-left px-4">
         <div className="w-[10%]">Rank</div>
         <div className="w-[30%]">User</div>
@@ -88,7 +88,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         <div className="w-[10%]">경험치</div>
       </div>
 
-      <div className="w-full min-h-[50vh]">
+      <div className="min-h-[50vh]">
         {error ? (
           <p className="text-center text-red-500 font-Bold mt-4">{error}</p>
         ) : rankingData.length > 0 ? (
@@ -99,7 +99,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           </p>
         )}
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mt-9 min-h-[40px]">
         <Pagination
           totalPages={totalPages}
           currentPage={page}
@@ -107,7 +107,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         />
       </div>
       {myRanking && (
-        <div className="w-full mt-6 pt-3">
+        <div className="w-full mt-1 pt-3">
           <Line className="w-full" />
           <RankingItem {...myRanking} />
         </div>
