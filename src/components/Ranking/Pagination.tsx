@@ -11,7 +11,7 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   if (totalPages <= 1) return null;
 
-  const pagesPerGroup = 4;
+  const pagesPerGroup = 4;          // 한 번에 보여줄 페이지 수 (1, 2, 3, 4)
   const currentGroup = Math.floor(currentPage / pagesPerGroup);
   const startPage = currentGroup * pagesPerGroup;
   const endPage = Math.min(startPage + pagesPerGroup, totalPages);

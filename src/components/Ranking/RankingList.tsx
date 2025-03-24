@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
-import Pagination from '@/components/common/Pagination';
+import Pagination from '@/components/Ranking/Pagination';
 
 interface RankingListProps {
   searchId: string | null;
@@ -15,7 +15,9 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const [myRanking, setMyRanking] = useState<any | null>(null);
   const [page, setPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [hasFetchMyRanking, setHasFetchMyRanking] = useState<boolean>(false);
 
+  // 랭킹 조회 api 요청
   useEffect(() => {
     const fetchRanking = async () => {
       try {
@@ -25,10 +27,16 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           const { content, totalPages } = res;
           setRankingData(content);
           setTotalPages(totalPages);
-          const myRank = content.find(
-            (item: { isMe: boolean }) => item.isMe || null,
-          );
-          setMyRanking(myRank);
+
+          if (!hasFetchMyRanking) {
+            const myRank = content.find(
+              (item: { isMe: boolean }) => item.isMe || null,
+            );
+            if (myRank) {
+              setMyRanking(myRank);
+              setHasFetchMyRanking(true);
+            }
+          }
         }
 
         setError(null);
@@ -43,6 +51,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     }
   }, [page, searchId]);
 
+  // 유저 검색 api 요청
   useEffect(() => {
     if (searchId) {
       const fetchUser = async () => {
