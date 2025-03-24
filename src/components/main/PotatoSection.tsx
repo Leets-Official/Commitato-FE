@@ -13,7 +13,8 @@ const PotatoSection: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-16 mb-52">
       {Object.entries(levelMap).map(
-        ([name, { image: PotatoImage, comment: CommentImage }], index) => (
+        ([name, { image: PotatoImage, comment: CommentImage }]) => (
+          // eslint-disable-next-line react/jsx-key
           <div className="relative flex flex-col items-center justify-center gap-8">
             <motion.div
               whileHover={{ scale: 1.1 }}

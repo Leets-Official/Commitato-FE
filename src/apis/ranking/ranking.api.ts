@@ -9,6 +9,7 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
     const myGithubId = localStorage.getItem('githubId');
 
     if (res.data?.result?.content) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rankingData = res.data.result.content.map((item: any) => ({
         ...item,
         isMe: item.githubId === myGithubId,
@@ -24,6 +25,7 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
       return { content: [], totalPages: 1, totalElements: 0 };
     }
   } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     error instanceof Error ? error.message : '랭킹 조회 오류가 발생했습니다: ';
   }
 };
@@ -43,6 +45,7 @@ export const getUserIdApi = async (githubId: string) => {
       return null;
     }
   } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     error instanceof Error
       ? error.message
       : '유저 아이디 조회 오류가 발생했습니다: ';
