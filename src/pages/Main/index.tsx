@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import { sections } from '@/constants/sections.constants';
 import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
