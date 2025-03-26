@@ -18,5 +18,6 @@ const router = createBrowserRouter([
     element: <RankingPage />,
   },
   { path: '/mypage', element: <MyPage /> },
+  { path: '/mypage/:githubId', element: <MyPage /> },
 ]);
 export default router;

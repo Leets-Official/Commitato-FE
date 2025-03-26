@@ -2,26 +2,33 @@ import React from 'react';
 import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
 import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
 import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
+import { useNavigate } from 'react-router-dom';
 
-interface RankingItemProps {
-  rank: number;
-  user: string;
-  tier: string;
-  commitDay: string;
+export interface RankingItemProps {
+  ranking: number;
+  githubId: string;
+  tierName: string;
+  consecutiveCommitDays: string;
   exp: number;
   change: 'up' | 'down' | 'none' | string;
   isMe?: boolean;
 }
 
 const RankingItem: React.FC<RankingItemProps> = ({
-  rank,
-  user,
-  tier,
-  commitDay,
+  ranking,
+  githubId,
+  tierName,
+  consecutiveCommitDays,
   exp,
   change,
   isMe,
 }) => {
+  const nav = useNavigate();
+
+  const handleIdClick = () => {
+    nav(`/mypage/${githubId}`);
+  };
+
   const getIcon = () => {
     switch (change) {
       case 'up':
@@ -35,7 +42,7 @@ const RankingItem: React.FC<RankingItemProps> = ({
 
   return (
     <div className="flex py-3 px-4 items-center font-Bold">
-      <div className="w-[10%]">{rank}</div>
+      <div className="w-[10%]">{ranking}</div>
       <div className="w-[30%] flex items-center">
         {isMe && (
           <span className="bg-primary px-1 rounded text-captionBody font-SemiBold mr-2">
@@ -44,13 +51,13 @@ const RankingItem: React.FC<RankingItemProps> = ({
         )}
         <span
           className="cursor-pointer hover:underline"
-          onClick={() => alert(`${user} 프로필로 이동`)}
+          onClick={handleIdClick}
         >
-          {user}
+          {githubId}
         </span>
       </div>
-      <div className="w-[35%]">{tier}</div>
-      <div className="w-[15%]">{commitDay}</div>
+      <div className="w-[35%]">{tierName}</div>
+      <div className="w-[15%]">{consecutiveCommitDays}</div>
       <div className="w-[10%] font-bold flex items-center justify-between">
         <span className="mr-1">{exp}</span>
         {getIcon()}
