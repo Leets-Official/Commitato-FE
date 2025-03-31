@@ -1,6 +1,6 @@
 import FarmLine from '@/assets/icon/commitFarm.svg?react';
 import CountNumber from '@/components/myPage/CountNumber';
-import CommitCalendar from './CommitCalendar';
+import CommitCalendar from '@/components/myPage/CommitCalendar';
 import { useEffect, useState } from 'react';
 import getUserCommits from '@/apis/myPage/userCommit.api';
 
