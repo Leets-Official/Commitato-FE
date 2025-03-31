@@ -41,6 +41,7 @@ export function TextFade({
       initial={getInitialPosition()}
       whileInView={{
         opacity: 1,
+        x: 0,
         y: 0,
         transition: {
           delay,
@@ -59,12 +60,54 @@ export function TextFade({
             initial="hidden"
             animate={isInView ? 'show' : 'hidden'}
             variants={{
-              hidden: { opacity: 0, y: direction === 'down' ? -50 : 50 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { delay, duration, ease: 'easeOut' },
-              },
+              hidden:
+                direction === 'left'
+                  ? { opacity: 0, x: 50 }
+                  : direction === 'right'
+                    ? { opacity: 0, x: -50 }
+                    : direction === 'up'
+                      ? { opacity: 0, y: 50 }
+                      : { opacity: 0, y: -50 },
+              show:
+                direction === 'left' || direction === 'right'
+                  ? {
+                      opacity: 1,
+                      x: 0,
+                      transition: {
+                        x: {
+                          type: 'spring',
+                          bounce: 0.3,
+                          stiffness: 1200,
+                          damping: 50,
+                          mass: 0.3,
+                          delay: 0,
+                        },
+                        opacity: {
+                          duration: 0.2,
+                          ease: 'linear',
+                          delay: 0,
+                        },
+                      },
+                    }
+                  : {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        y: {
+                          type: 'spring',
+                          bounce: 0.3,
+                          stiffness: 1000,
+                          damping: 40,
+                          mass: 0.3,
+                          delay,
+                        },
+                        opacity: {
+                          duration: 0.2,
+                          ease: 'linear',
+                          delay,
+                        },
+                      },
+                    },
             }}
           >
             {child}

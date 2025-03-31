@@ -14,7 +14,9 @@ export const sections = [
     title: '',
     content: (
       <div className="flex flex-col w-full items-start gap-12 mt-12">
-        <Comment1Svg className="w-full max-w-[950px]" />
+        <TextFade direction="right" duration={2}>
+          <Comment1Svg className="w-full max-w-[950px]" />
+        </TextFade>
         <HowText />
       </div>
     ),
@@ -23,7 +25,11 @@ export const sections = [
   {
     id: 2,
     title: '',
-    content: <Comment2Svg className="w-full max-w-[950px]" />,
+    content: (
+      <TextFade direction="left" duration={1.5}>
+        <Comment2Svg className="w-full max-w-[950px]" />,
+      </TextFade>
+    ),
     align: 'right',
   },
   {
@@ -41,7 +47,7 @@ export const sections = [
   {
     id: 5,
     title: (
-      <TextFade direction={'left'} duration={1.5} delay={0.1}>
+      <TextFade direction="right" duration={1.5} delay={0.1}>
         <Comment3Svg className="w-full max-w-[950px]" />
         <CommitSvg className="w-full max-w-[950px]" />
         <div className="font-Bold text-brown-200 text-captionBody sm:text-assistive tracking-wide">
@@ -57,7 +63,7 @@ export const sections = [
     id: 6,
     title: '',
     content: (
-      <TextFade direction={'right'} duration={1.5} delay={0.1}>
+      <TextFade direction="left" duration={1.5} delay={0.1}>
         <Comment4Svg className="w-full max-w-[950px]" />
         <RankingSvg className="w-full max-w-[950px]" />
 
