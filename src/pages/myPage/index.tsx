@@ -9,11 +9,14 @@ import { useEffect, useState } from 'react';
 import MyPageUser from '@/apis/myPage/user.api';
 import updateCommit from '@/apis/myPage/commitUpdate.api';
 import { useParams } from 'react-router-dom';
+import CongratModal from '@/components/modal/CongratModal';
 
 const MyPage = () => {
   const { githubId } = useParams();
   const [userData, setUserData] = useState<UserTypes | null>(null);
   const myGithubId = localStorage.getItem('githubId');
+  const [prevTier, setPrevTier] = useState<string | null>(null);
+  const [isTierUp, setIsTierUp] = useState(false);
 
   const finalGithubId = githubId || myGithubId;
 
@@ -25,7 +28,13 @@ const MyPage = () => {
 
       const data = await MyPageUser(finalGithubId);
       console.log(data);
-      if (data) setUserData(data);
+
+      if (userData && data?.tierName !== userData.tierName) {
+        setPrevTier(userData.tierName);
+        setIsTierUp(true);
+      }
+
+      setUserData(data);
     };
     fetchUserData();
   }, [finalGithubId]);
@@ -55,6 +64,17 @@ const MyPage = () => {
         </div>
       </main>
       <Footer />
+      {isTierUp && prevTier && (
+        <CongratModal
+          onClose={() => {
+            setIsTierUp(false);
+            setPrevTier(null);
+          }}
+          githubId={userData.githubId}
+          level={prevTier}
+          newLevel={userData.tierName}
+        />
+      )}
     </div>
   );
 };
