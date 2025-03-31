@@ -24,6 +24,8 @@ const GithubLoginLoading = () => {
           const githubId = res.result.githubId;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('githubId', githubId);
+          localStorage.setItem('hasSeenWelcomeModal', 'false');
+
           nav('/');
         } else {
           console.log('로그인 실패');
