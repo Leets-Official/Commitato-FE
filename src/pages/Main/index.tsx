@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
 import { sections } from '@/constants/sections.constants';
 import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
@@ -15,10 +15,13 @@ const MainPage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     const storedGithubId = localStorage.getItem('githubId');
+    const hasSeenWelcomeModal = localStorage.getItem('hasSeenWelcomeModal');
 
-    if (accessToken && storedGithubId) {
+    if (accessToken && storedGithubId && hasSeenWelcomeModal !== 'true') {
       setGithubId(storedGithubId);
       setIsModalOpen(true);
+
+      localStorage.setItem('hasSeenWelcomeModal', 'true');
     }
   }, []);
 

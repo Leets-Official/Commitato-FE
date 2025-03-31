@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import GithubSVG from '@/assets/icon/footerGithub.svg?react';
 
 const CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID;
