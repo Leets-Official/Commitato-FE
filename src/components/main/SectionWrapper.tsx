@@ -29,7 +29,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
   return (
     <div
       className={`w-full flex flex-col items-center justify-center min-h-screen 
-        px-6 md:px-16 lg:px-24 xl:px-36 space-y-36 ${className}`}
+        px-6 md:px-16 lg:px-24 xl:px-36 ${className}`}
     >
       {title && (
         <div className={`w-full flex ${getAlignmentClass(align)}`}>{title}</div>

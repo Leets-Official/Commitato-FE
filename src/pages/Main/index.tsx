@@ -46,7 +46,7 @@ const MainPage = () => {
               key={section.id}
               title={section.title}
               content={section.content}
-              align={section.align}
+              align={section.align ?? 'left'}
             />
           ))}
         </div>
