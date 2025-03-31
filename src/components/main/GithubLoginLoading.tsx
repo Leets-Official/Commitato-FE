@@ -24,7 +24,7 @@ const GithubLoginLoading = () => {
           const githubId = res.result.githubId;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('githubId', githubId);
-          localStorage.setItem('welcomeShown', 'false');
+          localStorage.setItem('hasSeenWelcomeModal', 'false');
 
           nav('/');
         } else {
