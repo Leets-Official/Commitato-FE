@@ -15,10 +15,13 @@ const MainPage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     const storedGithubId = localStorage.getItem('githubId');
+    const hasSeenWelcomeModal = localStorage.getItem('hasSeenWelcomeModal');
 
-    if (accessToken && storedGithubId) {
+    if (accessToken && storedGithubId && hasSeenWelcomeModal !== 'true') {
       setGithubId(storedGithubId);
       setIsModalOpen(true);
+
+      localStorage.setItem('hasSeenWelcomeModal', 'true');
     }
   }, []);
 
