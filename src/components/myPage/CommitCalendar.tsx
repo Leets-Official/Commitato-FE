@@ -50,6 +50,8 @@ type MonthBlockProps = {
 };
 
 const MonthBlock: React.FC<MonthBlockProps> = ({ title, dates, commitMap }) => {
+  const todayStr = format(new Date(), 'yyyy-MM-dd');
+
   return (
     <div className="flex flex-col items-center w-[100%]">
       <p className="text-grey font-staatliches text-body mt-3 mb-2">{title}</p>
@@ -65,7 +67,13 @@ const MonthBlock: React.FC<MonthBlockProps> = ({ title, dates, commitMap }) => {
                 title={`${date}: ${count} commit${count !== 1 ? 's' : ''}`}
                 className={`w-3 h-3 rounded-[3px] ${color}`}
               />
-              <span className="font-SemiBold text-[8px] text-lightGray mt-1">
+              <span
+                className={`text-[8px] mt-1 ${
+                  date === todayStr
+                    ? 'font-Bold text-grey'
+                    : 'font-SemiBold text-lightGray'
+                }`}
+              >
                 {day}
               </span>
             </div>
@@ -91,7 +99,7 @@ const CommitCalendar: React.FC<Props> = ({ commits }) => {
     <div className="flex justify-between gap-4 w-full">
       {sortedMonthKeys.map(monthKey => {
         const monthDate = new Date(`${monthKey}-01`);
-        const title = format(monthDate, 'LLLL');
+        const title = format(monthDate, 'LLL').toUpperCase();
         return (
           <MonthBlock
             key={monthKey}
