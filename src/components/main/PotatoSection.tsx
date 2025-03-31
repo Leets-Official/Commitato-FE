@@ -15,7 +15,7 @@ const PotatoSection: React.FC = () => {
       {Object.entries(levelMap).map(
         ([name, { image: PotatoImage, comment: CommentImage }], index) => {
           const isSelected = selectedItem === name;
-          const isLeft = index % 2 === 0; // 0, 2, ... 왼쪽 정렬
+          const isLeft = index % 2 === 0;
 
           return (
             <div
@@ -50,7 +50,7 @@ const PotatoSection: React.FC = () => {
                         onClick={() => handlePotatoClick(name)}
                         className="cursor-pointer"
                       >
-                        <PotatoImage className="w-48 h-auto" />
+                        <PotatoImage className="w-48 md:w-48 lg:w-56 h-auto" />
                       </motion.div>
                     </>
                   )}
@@ -66,7 +66,13 @@ const PotatoSection: React.FC = () => {
                 </motion.div>
               )}
 
-              <div className="mt-6 text-grey text-assistive font-ExtraBold leading-[140%] tracking-[3%] text-center">
+              <div
+                className={`
+                mt-6 text-grey text-assistive font-ExtraBold leading-[140%] tracking-[3%]
+                ${isSelected ? (isLeft ? 'text-left items-start' : 'text-right items-end') : 'text-center items-center'}
+                flex flex-col w-full
+              `}
+              >
                 {descriptions[name]}
               </div>
             </div>
