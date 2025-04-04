@@ -7,6 +7,7 @@ import SectionMain from '@/components/main/SectionMain';
 import ScrollBanner from '@/components/main/Banner';
 import { useEffect, useState } from 'react';
 import WelcomeModal from '@/components/modal/WelcomeModal';
+import ScrollButton from '@/components/main/ScrollButton';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,12 +46,15 @@ const MainPage = () => {
               key={section.id}
               title={section.title}
               content={section.content}
-              align={section.align}
+              align={section.align ?? 'left'}
             />
           ))}
         </div>
 
         <Footer isMainPage />
+
+        <ScrollButton />
+
         {isModalOpen && (
           <WelcomeModal
             onClose={() => setIsModalOpen(false)}

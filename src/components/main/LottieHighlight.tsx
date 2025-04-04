@@ -8,7 +8,7 @@ interface LottieHighlightProps {
 const LottieHighlight: React.FC<LottieHighlightProps> = ({ className }) => {
   return (
     <div
-      className={`absolute left-1/2 -translate-x-1/2 w-[90%] h-[20%] opacity-50 ${className}`}
+      className={`absolute left-1/2 -translate-x-1/2 w-[90%] h-[10%] opacity-50 ${className}`}
     >
       <Lottie animationData={HighlightLottie} loop autoPlay />
     </div>

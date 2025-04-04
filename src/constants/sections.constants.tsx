@@ -14,7 +14,9 @@ export const sections = [
     title: '',
     content: (
       <div className="flex flex-col w-full items-start gap-12 mt-12">
-        <Comment1Svg width="60%" />
+        <TextFade direction="right" duration={2}>
+          <Comment1Svg className="w-full max-w-[950px]" />
+        </TextFade>
         <HowText />
       </div>
     ),
@@ -23,7 +25,11 @@ export const sections = [
   {
     id: 2,
     title: '',
-    content: <Comment2Svg width="60%" />,
+    content: (
+      <TextFade direction="left" duration={1.5}>
+        <Comment2Svg className="w-full max-w-[950px]" />,
+      </TextFade>
+    ),
     align: 'right',
   },
   {
@@ -34,27 +40,50 @@ export const sections = [
   },
   {
     id: 4,
+    title: '',
+    content: '',
+    align: 'center',
+  },
+  {
+    id: 5,
     title: (
-      <TextFade direction={'left'} duration={2.2} delay={0.2}>
-        <Comment3Svg width="60%" />
-        <CommitSvg width="70%" />
+      <TextFade direction="right" duration={1.5} delay={0.1}>
+        <Comment3Svg className="w-full max-w-[950px]" />
+        <CommitSvg className="w-full max-w-[950px]" />
+        <div className="font-Bold text-brown-200 text-captionBody sm:text-assistive tracking-wide">
+          마이 페이지에서 나의 커밋 현황을 확인할 수 있는 달력 기능을 해요.
+          꾸준한 커밋으로 당신의 커밋 농장을 황금색 감자로 가득 채워보세요!
+        </div>
       </TextFade>
     ),
     content: '',
     align: 'left',
   },
   {
-    id: 5,
-    title: (
-      <TextFade direction={'right'} duration={2.2} delay={0.2}>
-        <Comment4Svg width="60%" />
-        <RankingSvg width="70%" />
+    id: 6,
+    title: '',
+    content: (
+      <TextFade direction="left" duration={1.5} delay={0.1}>
+        <Comment4Svg className="w-full max-w-[950px]" />
+        <RankingSvg className="w-full max-w-[950px]" />
+
+        <div className="flex flex-col text-right space-y-2">
+          <div className="font-Bold text-brown-200 text-captionBody sm:text-assistive tracking-wide">
+            랭킹에서 다른 유저와 자신의 순위, 티어, 연속 커밋 횟수, 획득 경험치
+            등을 확인할 수 있어요.
+          </div>
+          <div className="font-Bold text-brown-200 text-captionBody sm:text-assistive tracking-wide">
+            만약 특정 유저의 정보가 궁금하다면, 깃허브 아이디를 검색하여 확인할
+            수 있어요.
+          </div>
+          <div className="font-Bold text-brown-200 text-captionBody sm:text-assistive tracking-wide">
+            친구와 함께 순위를 겨루며 커밋테이토를 즐기세요!
+          </div>
+        </div>
       </TextFade>
     ),
-    content: '',
     align: 'right',
   },
-  { id: 6, title: '', content: '', align: 'right' },
   {
     id: 7,
     title: (
