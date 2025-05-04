@@ -3,19 +3,22 @@ import CountNumber from '@/components/myPage/CountNumber';
 import CommitCalendar from '@/components/myPage/CommitCalendar';
 import { useEffect, useState } from 'react';
 import getUserCommits from '@/apis/myPage/userCommit.api';
+import { useParams } from 'react-router-dom';
 
 const MyCommitFarm = () => {
   const [commitData, setCommitData] = useState([]);
-  const githubId = localStorage.getItem('githubId');
+  const { githubId } = useParams();
+  const myGithubId = localStorage.getItem('githubId');
+  const finalGithubId = githubId || myGithubId;
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!githubId) {
+      if (!finalGithubId) {
         return;
       }
 
       try {
-        const data = await getUserCommits(githubId);
+        const data = await getUserCommits(finalGithubId);
         console.log(data);
         setCommitData(data);
       } catch (error) {
