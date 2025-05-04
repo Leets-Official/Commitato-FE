@@ -6,18 +6,26 @@ import UpdateButton from '@/components/myPage/UpdateButton';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import updateButton from '@/apis/myPage/updateButton.api';
+import SkeletonBox from '../common/SkeletonBox';
+import ProfileCardSkeleton from './ProfileCardSkeleton';
 
 interface ProfileCardProps {
   user: UserTypes;
   setUser: (updatedUser: UserTypes) => void;
+  isLoading: boolean;
 }
 
-const ProfileCard = ({ user, setUser }: ProfileCardProps) => {
+const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
+  if (isLoading) {
+    return <ProfileCardSkeleton />;
+  }
+
   const handleUpdate = async () => {
     const updatedUser = await updateButton(user.githubId);
+    console.log(updatedUser);
     if (updatedUser) {
       setUser(updatedUser);
     }
