@@ -1,6 +1,8 @@
 import Modal from '@/components/modal';
 import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
+import Lottie from 'lottie-react';
+import CongratLottie from '@/assets/lotties/lottie_congrats.json';
 
 interface WelcomeModalProps {
   onClose: () => void;
@@ -15,7 +17,12 @@ const WelcomeModal = ({ onClose, githubId }: WelcomeModalProps) => {
   };
 
   return (
-    <Modal onClose={onClose} className="h-[263px] p-6">
+    <Modal onClose={onClose} className="w-[704px] h-[263px] p-6">
+      <Lottie
+        animationData={CongratLottie}
+        loop={false}
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+      />
       <h2>
         {githubId}님, Commitato에 오신 걸 환영해요!
         <br />
