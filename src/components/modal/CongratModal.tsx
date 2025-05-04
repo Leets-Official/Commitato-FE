@@ -35,7 +35,7 @@ const CongratModal = ({
   };
 
   return (
-    <Modal onClose={onClose} className="h-[461px]">
+    <Modal onClose={onClose} className="w-[704px] h-[461px]">
       <h2>
         축하드려요 {githubId}님, 당신의 감자가 성장했어요!
         <br />
