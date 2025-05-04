@@ -107,10 +107,21 @@ const ProfileCard = ({ user, setUser }: ProfileCardProps) => {
           <div className="mt-4 w-full">
             <div className="w-full flex">
               <div className="w-full relative bg-gray-300 h-[39px] rounded-xl">
-                <div
-                  className="absolute left-0 top-0 h-full bg-primary rounded-xl"
-                  style={{ width: `${progress}%` }}
-                ></div>
+                <div className="w-full relative bg-gray-300 h-[39px] rounded-xl overflow-hidden">
+                  {progress > 0 && (
+                    <div
+                      className="absolute left-0 top-0 h-full bg-primary"
+                      style={{
+                        width: `${progress}%`,
+                        borderTopLeftRadius: '12px',
+                        borderBottomLeftRadius: '12px',
+                        borderTopRightRadius: progress === 100 ? '12px' : '0px',
+                        borderBottomRightRadius:
+                          progress === 100 ? '12px' : '0px',
+                      }}
+                    />
+                  )}
+                </div>
               </div>
               <div className="relative">
                 <QuestionMark
