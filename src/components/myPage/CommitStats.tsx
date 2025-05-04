@@ -2,15 +2,31 @@ import Github from '@/assets/icon/myPageGithub.svg?react';
 import Line from '@/assets/icon/commitStatsLine.svg?react';
 import { UserTypes } from 'commitato-types';
 import { statsData } from '@/constants';
+import SkeletonBox from '../common/SkeletonBox';
 
 interface ProfileCardProps {
   user: UserTypes;
+  isLoading: boolean;
 }
 
-const CommitStats = ({ user }: ProfileCardProps) => {
+const CommitStats = ({ user, isLoading }: ProfileCardProps) => {
   const handleGithub = () => {
     window.open(`https://github.com/${user.githubId}`, '_blank');
   };
+
+  if (isLoading) {
+    return (
+      <div className="text-black flex flex-col p-2 w-full ml-3 mt-5">
+        {Array.from({ length: statsData.length }).map((_, index) => (
+          <div key={index} className="mb-2">
+            <SkeletonBox height={35} width="90%" className="mb-3 ml-3" />
+            <Line className="w-full" />
+          </div>
+        ))}
+        <SkeletonBox height={35} width="90%" className="mt-4 ml-3" />
+      </div>
+    );
+  }
 
   return (
     <div className="text-black flex flex-col p-2 w-full">
