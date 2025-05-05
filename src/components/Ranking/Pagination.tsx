@@ -11,7 +11,7 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   if (totalPages <= 1) return null;
 
-  const pagesPerGroup = 4;          // 한 번에 보여줄 페이지 수 (1, 2, 3, 4)
+  const pagesPerGroup = 4; // 한 번에 보여줄 페이지 수 (1, 2, 3, 4)
   const currentGroup = Math.floor(currentPage / pagesPerGroup);
   const startPage = currentGroup * pagesPerGroup;
   const endPage = Math.min(startPage + pagesPerGroup, totalPages);
@@ -23,9 +23,9 @@ const Pagination: React.FC<PaginationProps> = ({
           if (startPage > 0) onPageChange(startPage - 1);
         }}
         disabled={startPage === 0}
-        className={`font-Regular ${startPage === 0 ? 'text-lightGray cursor-not-allowed' : 'text-black hover:underline'}`}
+        className={`font-staatliches text-captionBody ${startPage === 0 ? 'text-lightGray cursor-not-allowed' : 'text-black hover:underline'}`}
       >
-        이전
+        &lt;
       </button>
       {Array.from({ length: endPage - startPage }, (_, index) => {
         const page = startPage + index;
@@ -44,7 +44,7 @@ const Pagination: React.FC<PaginationProps> = ({
         );
       })}
       <button
-        className={`${
+        className={`font-staatliches text-captionBody ${
           endPage >= totalPages
             ? 'text-lightGray cursor-not-allowed'
             : 'text-black'
@@ -54,7 +54,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }}
         disabled={endPage >= totalPages}
       >
-        다음
+        &gt;
       </button>
     </div>
   );
