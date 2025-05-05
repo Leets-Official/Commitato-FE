@@ -2,12 +2,29 @@ import GithubLoginButton from '@/components/main/GithubLoginButton';
 import { TextFade } from '@/components/main/TextFade';
 import Lottie from 'lottie-react';
 import ArrowLottie from '@/assets/lotties/lottie_arrow_down.json';
+import { RefObject } from 'react';
 
 interface SectionProps {
   className?: string;
+  scrollTargetRef: RefObject<HTMLDivElement>;
 }
 
-const SectionMain: React.FC<SectionProps> = ({ className }) => {
+const SectionMain: React.FC<SectionProps> = ({
+  className,
+  scrollTargetRef,
+}) => {
+  const handleScroll = () => {
+    if (scrollTargetRef.current) {
+      const top =
+        scrollTargetRef.current.getBoundingClientRect().top + window.scrollY;
+      const halfHeight = scrollTargetRef.current.offsetHeight / 2;
+
+      window.scrollTo({
+        top: top - halfHeight,
+        behavior: 'smooth',
+      });
+    }
+  };
   return (
     <>
       <div
@@ -21,7 +38,7 @@ const SectionMain: React.FC<SectionProps> = ({ className }) => {
 
         <GithubLoginButton />
 
-        <div className="pt-28 w-32 h-32">
+        <div className="pt-28 w-32 h-32 cursor-pointer" onClick={handleScroll}>
           <Lottie animationData={ArrowLottie} loop={true} />
         </div>
       </div>
