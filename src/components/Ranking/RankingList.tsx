@@ -3,7 +3,6 @@ import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 import Pagination from '@/components/Ranking/Pagination';
-import Button from '../common/Button';
 
 interface RankingListProps {
   searchId: string | null;
