@@ -3,6 +3,7 @@ import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 import Pagination from '@/components/Ranking/Pagination';
+import Button from '../common/Button';
 
 interface RankingListProps {
   searchId: string | null;
@@ -16,6 +17,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const [page, setPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [hasFetchMyRanking, setHasFetchMyRanking] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   // 랭킹 조회 api 요청
   useEffect(() => {
@@ -75,6 +77,12 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     }
   }, [searchId]);
 
+  //로그인 여부 확인
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    setIsLoggedIn(!!token);
+  }, []);
+
   if (isLoading) {
     return (
       <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
@@ -115,12 +123,19 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           onPageChange={setPage}
         />
       </div>
-      {myRanking && (
-        <div className="w-full mt-1 pt-3">
+      <div className="w-full mt-1 pt-3">
+        <div className="w-full">
           <Line className="w-full" />
-          <RankingItem {...myRanking} />
         </div>
-      )}
+
+        {isLoggedIn ? (
+          myRanking && <RankingItem {...myRanking} />
+        ) : (
+          <div className="font-Bold text-assistive flex items-center justify-center text-grey p-4 bg-gray- rounde50d-md ">
+            로그인 후 내 랭킹을 확인할 수 있어요!
+          </div>
+        )}
+      </div>
     </div>
   );
 };
