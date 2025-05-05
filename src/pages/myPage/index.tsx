@@ -20,12 +20,17 @@ const MyPage = () => {
   const [isTierUp, setIsTierUp] = useState(false);
 
   const finalGithubId = githubId || myGithubId;
+  const isMyPage = !githubId || githubId === myGithubId;
 
   useEffect(() => {
     if (!finalGithubId) return;
 
     const fetchUserData = async () => {
-      await updateCommit();
+      setUserData(null);
+
+      if (isMyPage) {
+        await updateCommit();
+      }
 
       const data = await MyPageUser(finalGithubId);
 
@@ -37,7 +42,7 @@ const MyPage = () => {
       setUserData(data);
     };
     fetchUserData();
-  }, [finalGithubId]);
+  }, [githubId, myGithubId]);
 
   return (
     <div className="bg-black min-h-screen flex flex-col">
