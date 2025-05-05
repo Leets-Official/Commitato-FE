@@ -3,13 +3,14 @@ import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 import Pagination from '@/components/Ranking/Pagination';
+import { RankingUserTypes } from 'ranking-types';
 
 interface RankingListProps {
   searchId: string | null;
 }
 
 const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
-  const [rankingData, setRankingData] = useState<any[]>([]);
+  const [rankingData, setRankingData] = useState<RankingUserTypes[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [myRanking, setMyRanking] = useState<any | null>(null);
