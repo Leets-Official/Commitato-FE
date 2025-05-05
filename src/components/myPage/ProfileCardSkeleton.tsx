@@ -1,4 +1,4 @@
-import SkeletonBox from '../common/SkeletonBox';
+import SkeletonBox from '@/components/common/SkeletonBox';
 
 const ProfileCardSkeleton = () => {
   return (

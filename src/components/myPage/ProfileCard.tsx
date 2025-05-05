@@ -6,8 +6,7 @@ import UpdateButton from '@/components/myPage/UpdateButton';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import updateButton from '@/apis/myPage/updateButton.api';
-import SkeletonBox from '../common/SkeletonBox';
-import ProfileCardSkeleton from './ProfileCardSkeleton';
+import ProfileCardSkeleton from '@/components/myPage/ProfileCardSkeleton';
 
 interface ProfileCardProps {
   user: UserTypes;

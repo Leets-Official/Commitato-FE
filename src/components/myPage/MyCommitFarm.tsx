@@ -4,7 +4,7 @@ import CommitCalendar from '@/components/myPage/CommitCalendar';
 import { useEffect, useState } from 'react';
 import getUserCommits from '@/apis/myPage/userCommit.api';
 import { useParams } from 'react-router-dom';
-import SkeletonBox from '../common/SkeletonBox';
+import SkeletonBox from '@/components/common/SkeletonBox';
 import Line from '@/assets/icon/myPageLine.svg?react';
 
 interface MyCommitFarmProps {

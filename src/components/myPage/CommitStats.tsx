@@ -2,7 +2,7 @@ import Github from '@/assets/icon/myPageGithub.svg?react';
 import Line from '@/assets/icon/commitStatsLine.svg?react';
 import { UserTypes } from 'commitato-types';
 import { statsData } from '@/constants';
-import SkeletonBox from '../common/SkeletonBox';
+import SkeletonBox from '@/components/common/SkeletonBox';
 
 interface ProfileCardProps {
   user: UserTypes;
