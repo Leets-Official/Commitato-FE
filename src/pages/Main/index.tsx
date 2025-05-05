@@ -5,15 +5,18 @@ import SectionWrapper from '@/components/main/SectionWrapper';
 import BackgroundController from '@/components/main/BackgroundController';
 import SectionMain from '@/components/main/SectionMain';
 import ScrollBanner from '@/components/main/Banner';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import WelcomeModal from '@/components/modal/WelcomeModal';
 import ScrollButton from '@/components/main/ScrollButton';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [githubId, setGithubId] = useState<string | null>(null);
+  const hasCheckedRef = useRef(false);
 
   useEffect(() => {
+    if (hasCheckedRef.current) return;
+
     const accessToken = localStorage.getItem('accessToken');
     const storedGithubId = localStorage.getItem('githubId');
     const hasSeenWelcomeModal = localStorage.getItem('hasSeenWelcomeModal');

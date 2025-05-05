@@ -6,18 +6,25 @@ import UpdateButton from '@/components/myPage/UpdateButton';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import updateButton from '@/apis/myPage/updateButton.api';
+import ProfileCardSkeleton from '@/components/myPage/ProfileCardSkeleton';
 
 interface ProfileCardProps {
   user: UserTypes;
   setUser: (updatedUser: UserTypes) => void;
+  isLoading: boolean;
 }
 
-const ProfileCard = ({ user, setUser }: ProfileCardProps) => {
+const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
+  if (isLoading) {
+    return <ProfileCardSkeleton />;
+  }
+
   const handleUpdate = async () => {
     const updatedUser = await updateButton(user.githubId);
+    console.log(updatedUser);
     if (updatedUser) {
       setUser(updatedUser);
     }
@@ -107,10 +114,21 @@ const ProfileCard = ({ user, setUser }: ProfileCardProps) => {
           <div className="mt-4 w-full">
             <div className="w-full flex">
               <div className="w-full relative bg-gray-300 h-[39px] rounded-xl">
-                <div
-                  className="absolute left-0 top-0 h-full bg-primary rounded-xl"
-                  style={{ width: `${progress}%` }}
-                ></div>
+                <div className="w-full relative bg-gray-300 h-[39px] rounded-xl overflow-hidden">
+                  {progress > 0 && (
+                    <div
+                      className="absolute left-0 top-0 h-full bg-primary"
+                      style={{
+                        width: `${progress}%`,
+                        borderTopLeftRadius: '12px',
+                        borderBottomLeftRadius: '12px',
+                        borderTopRightRadius: progress === 100 ? '12px' : '0px',
+                        borderBottomRightRadius:
+                          progress === 100 ? '12px' : '0px',
+                      }}
+                    />
+                  )}
+                </div>
               </div>
               <div className="relative">
                 <QuestionMark

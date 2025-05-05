@@ -10,6 +10,7 @@ import MyPageUser from '@/apis/myPage/user.api';
 import updateCommit from '@/apis/myPage/commitUpdate.api';
 import { useParams } from 'react-router-dom';
 import CongratModal from '@/components/modal/CongratModal';
+import MyPageHeaderSkeleton from '@/components/myPage/MyPageHeaderSkeleton';
 
 const MyPage = () => {
   const { githubId } = useParams();
@@ -27,7 +28,6 @@ const MyPage = () => {
       await updateCommit();
 
       const data = await MyPageUser(finalGithubId);
-      console.log(data);
 
       if (userData && data?.tierName !== userData.tierName) {
         setPrevTier(userData.tierName);
@@ -39,32 +39,38 @@ const MyPage = () => {
     fetchUserData();
   }, [finalGithubId]);
 
-  if (!userData) {
-    return <div className="text-white text-center mt-10">Loading...</div>;
-  }
-
   return (
     <div className="bg-black min-h-screen flex flex-col">
       <Header />
       <main className="h-[70vh] flex flex-col m-[6%] w-[65%] bg-white rounded-2xl mx-auto py-7 px-5">
-        <p className="font-staatliches text-header">
-          {githubId ? `${githubId}'s PAGE` : 'MY PAGE'}
-        </p>
-        <Line />
+        {userData ? (
+          <>
+            <p className="font-staatliches text-header">
+              {githubId ? `${githubId}'s PAGE` : 'MY PAGE'}
+            </p>
+            <Line />
+          </>
+        ) : (
+          <MyPageHeaderSkeleton />
+        )}
         <div className="mt-3">
-          <ProfileCard user={userData} setUser={setUserData} />
+          <ProfileCard
+            user={userData as UserTypes}
+            setUser={setUserData}
+            isLoading={!userData}
+          />
         </div>
         <div className="flex w-full mt-5 justify-evenly">
           <div className="w-[60%]">
-            <MyCommitFarm />
+            <MyCommitFarm isLoading={!userData} />
           </div>
           <div className="w-[30%] mt-6">
-            <CommitStats user={userData} />
+            <CommitStats user={userData as UserTypes} isLoading={!userData} />
           </div>
         </div>
       </main>
       <Footer />
-      {isTierUp && prevTier && (
+      {isTierUp && prevTier && userData && (
         <CongratModal
           onClose={() => {
             setIsTierUp(false);
