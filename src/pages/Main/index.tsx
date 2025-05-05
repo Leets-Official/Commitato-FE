@@ -13,6 +13,7 @@ const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [githubId, setGithubId] = useState<string | null>(null);
   const hasCheckedRef = useRef(false);
+  const firstSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (hasCheckedRef.current) return;
@@ -41,7 +42,7 @@ const MainPage = () => {
             className="w-full flex flex-col items-center justify-center min-h-screen 
         px-6 md:px-16 lg:px-24 max-w-screen-lg mx-auto"
           >
-            <SectionMain />
+            <SectionMain scrollTargetRef={firstSectionRef} />
           </div>
           <ScrollBanner baseVelocity={20} className="mb-44" />
           {sections.map(section => (
@@ -50,6 +51,7 @@ const MainPage = () => {
               title={section.title}
               content={section.content}
               align={section.align ?? 'left'}
+              ref={section.id === 1 ? firstSectionRef : null}
             />
           ))}
         </div>
