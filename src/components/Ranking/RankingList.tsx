@@ -5,6 +5,7 @@ import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 import Pagination from '@/components/Ranking/Pagination';
 import { RankingUserWithChange } from 'ranking-types';
 import { AxiosError } from 'axios';
+import RankingItemSkeleton from './RankingItemSkeleton';
 
 interface RankingListProps {
   searchId: string | null;
@@ -132,9 +133,20 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
 
   if (isLoading) {
     return (
-      <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
-        로딩 중...
-      </p>
+      <div className="w-full flex flex-col min-h-[60vh]">
+        <div className="flex py-3 font-ExtraBold text-grey text-left px-4">
+          <div className="w-[10%]">Rank</div>
+          <div className="w-[30%]">User</div>
+          <div className="w-[35%]">Tier</div>
+          <div className="w-[15%]">연속 커밋 횟수</div>
+          <div className="w-[10%]">경험치</div>
+        </div>
+        <div className="min-h-[50vh]">
+          {Array.from({ length: 10 }).map((_, idx) => (
+            <RankingItemSkeleton key={idx} />
+          ))}
+        </div>
+      </div>
     );
   }
 
