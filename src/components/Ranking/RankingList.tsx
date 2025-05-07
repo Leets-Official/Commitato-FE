@@ -4,6 +4,7 @@ import Line from '@/assets/icon/myPageLine.svg?react';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
 import Pagination from '@/components/Ranking/Pagination';
 import { RankingUserWithChange } from 'ranking-types';
+import { AxiosError } from 'axios';
 
 interface RankingListProps {
   searchId: string | null;
@@ -31,17 +32,19 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         if (res) {
           const { content, totalPages } = res;
 
-          const newRankingData = content.map(user => {
-            const prevRank = prevRankingMap.current[user.githubId];
-            let change: 'up' | 'down' | 'none' = 'none';
+          const newRankingData = content.map(
+            (user: { githubId: string | number; ranking: number }) => {
+              const prevRank = prevRankingMap.current[user.githubId];
+              let change: 'up' | 'down' | 'none' = 'none';
 
-            if (prevRank !== undefined) {
-              if (user.ranking < prevRank) change = 'up';
-              else if (user.ranking > prevRank) change = 'down';
-            }
+              if (prevRank !== undefined) {
+                if (user.ranking < prevRank) change = 'up';
+                else if (user.ranking > prevRank) change = 'down';
+              }
 
-            return { ...user, change };
-          });
+              return { ...user, change };
+            },
+          );
 
           // 새 랭킹 반영
           setRankingData(newRankingData);
@@ -49,7 +52,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
 
           // 이전 랭킹 저장
           prevRankingMap.current = newRankingData.reduce(
-            (acc, user) => {
+            (acc: Record<string, number>, user: RankingUserWithChange) => {
               acc[user.githubId] = user.ranking;
               return acc;
             },
@@ -70,7 +73,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         setError(null);
       } catch (error) {
         setError('랭킹 데이터를 불러오는 중 오류가 발생했습니다.');
-        console.error('랭킹 조회 오류 발생: ');
+        console.error('랭킹 조회 오류 발생: ', error);
       } finally {
         setIsLoading(false);
       }
@@ -78,7 +81,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     if (!searchId) {
       fetchRanking();
     }
-  }, [page, searchId]);
+  }, [page, searchId, hasFetchMyRanking]);
 
   // 유저 검색 api 요청
   useEffect(() => {
@@ -104,7 +107,9 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
             setRankingData(newSearchResult);
             setError(null);
           }
-        } catch (error: any) {
+        } catch (err: unknown) {
+          const error = err as AxiosError<{ message: string }>;
+
           if (error.response?.status === 404) {
             setError(error.response.data.message);
           } else {
