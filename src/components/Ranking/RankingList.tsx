@@ -59,8 +59,8 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
       const fetchUser = async () => {
         try {
           setIsLoading(true);
-          const user = await getUserIdApi(searchId);
-          setRankingData(user ? [user] : []);
+          const users = await getUserIdApi(searchId);
+          setRankingData(users ?? []);
           setError(null);
         } catch (error: any) {
           if (error.response?.status === 404) {
