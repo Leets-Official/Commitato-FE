@@ -3,18 +3,9 @@ import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
 import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
 import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
 import { useNavigate } from 'react-router-dom';
+import { RankingUserWithChange } from 'ranking-types';
 
-export interface RankingItemProps {
-  ranking: number;
-  githubId: string;
-  tierName: string;
-  consecutiveCommitDays: string;
-  exp: number;
-  change: 'up' | 'down' | 'none' | string;
-  isMe?: boolean;
-}
-
-const RankingItem: React.FC<RankingItemProps> = ({
+const RankingItem: React.FC<RankingUserWithChange> = ({
   ranking,
   githubId,
   tierName,
