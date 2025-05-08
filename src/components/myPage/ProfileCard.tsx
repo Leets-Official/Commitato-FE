@@ -11,9 +11,15 @@ interface ProfileCardProps {
   user: UserTypes;
   setUser: (updatedUser: UserTypes) => void;
   isLoading: boolean;
+  isMyPage: boolean;
 }
 
-const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
+const ProfileCard = ({
+  user,
+  setUser,
+  isLoading,
+  isMyPage,
+}: ProfileCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -90,7 +96,7 @@ const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
         <div className="ml-4 p-4 flex-1">
           <div className="flex justify-between">
             <h2 className="font-ExtraBold text-large">{user.githubId}</h2>
-            <UpdateButton onUpdated={setUser} />
+            {isMyPage && <UpdateButton onUpdated={setUser} />}
           </div>
           <div className="font-SemiBold text-assistive flex justify-between">
             <div className="flex gap-7">
@@ -98,9 +104,11 @@ const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
               <p>Level {user.tierName}</p>
               <p>연속 커밋 {user.consecutiveCommitDays}일차</p>
             </div>
-            <p className="font-SemiBold text-button text-grey mr-10 mt-1">
-              최근 업데이트 : {getTimeAgo(user.lastCommitUpdateTime)}
-            </p>
+            {isMyPage && (
+              <p className="font-SemiBold text-button text-grey mr-10 mt-1">
+                최근 업데이트 : {getTimeAgo(user.lastCommitUpdateTime)}
+              </p>
+            )}
           </div>
           <div className="mt-4 w-full">
             <div className="w-full flex">

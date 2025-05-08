@@ -21,11 +21,17 @@ const GithubLoginLoading = () => {
         const isSuccess = res.isSuccess;
 
         if (isSuccess) {
-          const accessToken = res.result.accessToken;
-          const githubId = res.result.githubId;
+          const accessToken = res.result.jwtResponse.accessToken;
+          const githubId = res.result.jwtResponse.githubId;
+          const isNewUser = res.result.isNewUser;
+
+          localStorage.setItem('isNewUser', isNewUser);
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('githubId', githubId);
-          await updateCommit();
+
+          if (isNewUser) {
+            await updateCommit();
+          }
 
           localStorage.setItem('hasSeenWelcomeModal', 'false');
 

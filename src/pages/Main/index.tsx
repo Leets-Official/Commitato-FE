@@ -18,11 +18,10 @@ const MainPage = () => {
   useEffect(() => {
     if (hasCheckedRef.current) return;
 
-    const accessToken = localStorage.getItem('accessToken');
     const storedGithubId = localStorage.getItem('githubId');
-    const hasSeenWelcomeModal = localStorage.getItem('hasSeenWelcomeModal');
+    const isNewUser = localStorage.getItem('isNewUser');
 
-    if (accessToken && storedGithubId && hasSeenWelcomeModal !== 'true') {
+    if (storedGithubId && isNewUser === 'true') {
       setGithubId(storedGithubId);
       setIsModalOpen(true);
 

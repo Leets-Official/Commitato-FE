@@ -19,7 +19,7 @@ const MyPage = () => {
   const [isTierUp, setIsTierUp] = useState(false);
 
   const finalGithubId = githubId || myGithubId;
-  // const isMyPage = !githubId || githubId === myGithubId;
+  const isMyPage = !githubId || githubId === myGithubId;
 
   useEffect(() => {
     if (!finalGithubId) return;
@@ -56,6 +56,7 @@ const MyPage = () => {
             user={userData as UserTypes}
             setUser={setUserData}
             isLoading={!userData}
+            isMyPage={isMyPage}
           />
         </div>
         <div className="flex w-full mt-5 justify-evenly">
