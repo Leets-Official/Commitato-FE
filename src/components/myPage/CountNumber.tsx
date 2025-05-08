@@ -2,7 +2,7 @@ import { countData } from '@/constants';
 
 const CountNumber = () => {
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 whitespace-nowrap">
       {countData.map(({ color, label }, index) => (
         <div key={index} className="flex gap-2">
           <div className={`w-[20px] h-[20px] ${color} rounded-[3px]`} />
