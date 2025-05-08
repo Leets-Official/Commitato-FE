@@ -7,7 +7,6 @@ import Line from '@/assets/icon/myPageLine.svg?react';
 import { UserTypes } from 'commitato-types';
 import { useEffect, useState } from 'react';
 import MyPageUser from '@/apis/myPage/user.api';
-import updateCommit from '@/apis/myPage/commitUpdate.api';
 import { useParams } from 'react-router-dom';
 import CongratModal from '@/components/modal/CongratModal';
 import MyPageHeaderSkeleton from '@/components/myPage/MyPageHeaderSkeleton';
@@ -20,18 +19,12 @@ const MyPage = () => {
   const [isTierUp, setIsTierUp] = useState(false);
 
   const finalGithubId = githubId || myGithubId;
-  const isMyPage = !githubId || githubId === myGithubId;
+  // const isMyPage = !githubId || githubId === myGithubId;
 
   useEffect(() => {
     if (!finalGithubId) return;
 
     const fetchUserData = async () => {
-      setUserData(null);
-
-      if (isMyPage) {
-        await updateCommit();
-      }
-
       const data = await MyPageUser(finalGithubId);
 
       if (userData && data?.tierName !== userData.tierName) {
@@ -67,7 +60,7 @@ const MyPage = () => {
         </div>
         <div className="flex w-full mt-5 justify-evenly">
           <div className="w-[60%]">
-            <MyCommitFarm isLoading={!userData} />
+            <MyCommitFarm className="w-full" isLoading={!userData} />
           </div>
           <div className="w-[30%] mt-6">
             <CommitStats user={userData as UserTypes} isLoading={!userData} />
