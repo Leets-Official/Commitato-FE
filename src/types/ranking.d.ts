@@ -5,6 +5,7 @@ declare module 'ranking-types' {
     consecutiveCommitDays: number;
     tierName: string;
     ranking: number;
+    isMe?: boolean;
   }
 
   export type RankChange = 'up' | 'down' | 'none';

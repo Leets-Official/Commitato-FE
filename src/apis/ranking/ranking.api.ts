@@ -1,4 +1,5 @@
 import api from '@/apis/api';
+import { RankingUserTypes } from 'ranking-types';
 
 const PATH = '/user';
 
@@ -30,24 +31,26 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
   }
 };
 
-export const getUserIdApi = async (githubId: string) => {
+export const getUserIdApi = async (
+  githubId: string,
+): Promise<RankingUserTypes[]> => {
   try {
     const res = await api.get(`${PATH}/search/${githubId}`);
 
     if (res.data?.result) {
       const myGithubId = localStorage.getItem('githubId');
 
-      return {
-        ...res.data.result,
-        isMe: res.data.result.githubId === myGithubId,
-      };
-    } else {
-      return null;
+      return res.data.result.map((user: RankingUserTypes) => ({
+        ...user,
+        isMe: user.githubId === myGithubId,
+      }));
     }
+    return [];
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     error instanceof Error
       ? error.message
       : '유저 아이디 조회 오류가 발생했습니다: ';
+    return [];
   }
 };
