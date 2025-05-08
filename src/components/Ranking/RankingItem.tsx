@@ -56,7 +56,7 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
         </span>
       </div>
       <div className="w-[35%]">{tierName}</div>
-      <div className="w-[15%]">{consecutiveCommitDays}</div>
+      <div className="w-[15%]">{consecutiveCommitDays}일</div>
       <div className="w-[10%] font-bold flex items-center justify-between">
         <span className="mr-1">{exp}</span>
         {getIcon()}
