@@ -7,7 +7,10 @@ const githubLogin = async (authCode: string) => {
     });
     return res.data;
   } catch (error) {
-    error instanceof Error ? error.message : '오류가 발생했습니다: ';
+    console.error(
+      error instanceof Error ? error.message : '오류가 발생했습니다',
+    );
+    throw error;
   }
 };
 
