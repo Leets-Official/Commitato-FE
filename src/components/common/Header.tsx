@@ -8,9 +8,10 @@ const Header: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     setShowModal(false);
     nav('/');
+    window.location.reload();
   };
 
   return (

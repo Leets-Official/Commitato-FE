@@ -9,9 +9,10 @@ import Line from '@/assets/icon/myPageLine.svg?react';
 
 interface MyCommitFarmProps {
   isLoading: boolean;
+  className?: string;
 }
 
-const MyCommitFarm = ({ isLoading }: MyCommitFarmProps) => {
+const MyCommitFarm = ({ isLoading, className = '' }: MyCommitFarmProps) => {
   const [commitData, setCommitData] = useState([]);
   const { githubId } = useParams();
   const myGithubId = localStorage.getItem('githubId');
@@ -36,7 +37,7 @@ const MyCommitFarm = ({ isLoading }: MyCommitFarmProps) => {
 
   if (isLoading) {
     return (
-      <main className="w-full flex flex-col mt-2">
+      <main className={`w-full flex flex-col mt-2 ${className}`}>
         <SkeletonBox height={30} width="30%" className="mb-1" />
         <Line />
         <SkeletonBox height={200} className="mt-5" />
@@ -46,8 +47,10 @@ const MyCommitFarm = ({ isLoading }: MyCommitFarmProps) => {
 
   return (
     <main className="w-full flex flex-col mt-2">
-      <div className="flex justify-between px-2">
-        <p className="font-ExtraBold text-captionBody">나의 커밋 농장</p>
+      <div className="w-full flex justify-between px-2">
+        <p className="w-full font-ExtraBold text-captionBody whitespace-nowrap">
+          나의 커밋 농장
+        </p>
         <CountNumber />
       </div>
       <FarmLine className="w-full" />

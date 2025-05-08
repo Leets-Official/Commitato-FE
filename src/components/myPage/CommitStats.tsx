@@ -42,11 +42,17 @@ const CommitStats = ({ user, isLoading }: ProfileCardProps) => {
         </>
       ))}
       <div className="flex items-center justify-between">
-        <div className="flex items-center ml-2" onClick={handleGithub}>
+        <div
+          className="flex items-center ml-2 cursor-pointer"
+          onClick={handleGithub}
+        >
           <Github />
           <p className="font-staatliches text-[32px]">GitHub</p>
         </div>
-        <p className="font-semibold text-[15px] w-[141px] flex justify-center">
+        <p
+          className="font-semibold text-[15px] w-[141px] flex justify-center cursor-pointer"
+          onClick={handleGithub}
+        >
           {user.githubId}
         </p>
       </div>

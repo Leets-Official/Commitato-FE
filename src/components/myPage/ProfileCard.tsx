@@ -5,7 +5,6 @@ import LevelMapModal from '@/components/modal/LevelMapModal';
 import UpdateButton from '@/components/myPage/UpdateButton';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import updateButton from '@/apis/myPage/updateButton.api';
 import ProfileCardSkeleton from '@/components/myPage/ProfileCardSkeleton';
 
 interface ProfileCardProps {
@@ -21,14 +20,6 @@ const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
   if (isLoading) {
     return <ProfileCardSkeleton />;
   }
-
-  const handleUpdate = async () => {
-    const updatedUser = await updateButton(user.githubId);
-    console.log(updatedUser);
-    if (updatedUser) {
-      setUser(updatedUser);
-    }
-  };
 
   const handleIconClick = (event: React.MouseEvent) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -99,7 +90,7 @@ const ProfileCard = ({ user, setUser, isLoading }: ProfileCardProps) => {
         <div className="ml-4 p-4 flex-1">
           <div className="flex justify-between">
             <h2 className="font-ExtraBold text-large">{user.githubId}</h2>
-            <UpdateButton onClick={handleUpdate} />
+            <UpdateButton onUpdated={setUser} />
           </div>
           <div className="font-SemiBold text-assistive flex justify-between">
             <div className="flex gap-7">

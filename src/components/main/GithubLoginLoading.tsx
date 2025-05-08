@@ -1,4 +1,5 @@
 import githubLogin from '@/apis/auth/githubLogin.api';
+import updateCommit from '@/apis/myPage/commitUpdate.api';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,6 +25,8 @@ const GithubLoginLoading = () => {
           const githubId = res.result.githubId;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('githubId', githubId);
+          await updateCommit();
+
           localStorage.setItem('hasSeenWelcomeModal', 'false');
 
           nav('/');
@@ -36,7 +39,12 @@ const GithubLoginLoading = () => {
     };
     fetchAuthCode();
   }, []);
-  return <>로딩중</>;
+
+  return (
+    <main className="text-white">
+      깃허브에서 정보를 가져오는 중이라서 시간이 소요됩니다.
+    </main>
+  );
 };
 
 export default GithubLoginLoading;
