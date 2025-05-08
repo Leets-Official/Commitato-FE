@@ -32,8 +32,16 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
   };
 
   return (
-    <div className="flex py-3 px-4 items-center font-Bold">
-      <div className="w-[10%]">{ranking}</div>
+    <div className="flex py-3 px-4 items-center font-Bold whitespace-nowrap">
+      <div
+        className={`w-[10%] ${
+          ranking <= 3
+            ? 'text-small md:text-lg font-ExtraBold'
+            : 'text-assistive'
+        }`}
+      >
+        {ranking}
+      </div>
       <div className="w-[30%] flex items-center">
         {isMe && (
           <span className="bg-primary px-1 rounded text-captionBody font-SemiBold mr-2">
