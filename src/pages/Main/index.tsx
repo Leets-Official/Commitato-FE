@@ -24,8 +24,6 @@ const MainPage = () => {
     if (storedGithubId && isNewUser === 'true') {
       setGithubId(storedGithubId);
       setIsModalOpen(true);
-
-      localStorage.setItem('hasSeenWelcomeModal', 'true');
     }
   }, []);
 
