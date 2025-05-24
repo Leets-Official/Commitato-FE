@@ -2,6 +2,7 @@ import githubLogin from '@/apis/auth/githubLogin.api';
 import updateCommit from '@/apis/myPage/commitUpdate.api';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginLoadingModal from '@/components/modal/LoginLoadingModal';
 
 const GithubLoginLoading = () => {
   const nav = useNavigate();
@@ -47,8 +48,8 @@ const GithubLoginLoading = () => {
   }, []);
 
   return (
-    <main className="text-white">
-      깃허브에서 정보를 가져오는 중이라서 시간이 소요됩니다.
+    <main className="w-screen h-screen flex items-center justify-center bg-black/50">
+      <LoginLoadingModal />
     </main>
   );
 };
