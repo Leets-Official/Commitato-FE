@@ -6,6 +6,7 @@ import Pagination from '@/components/Ranking/Pagination';
 import { RankingUserWithChange } from 'ranking-types';
 import { AxiosError } from 'axios';
 import RankingItemSkeleton from './RankingItemSkeleton';
+import RankingHeader from './RankingHeader';
 
 interface RankingListProps {
   searchId: string | null;
@@ -156,13 +157,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
 
   return (
     <div className="w-full flex flex-col justify-between min-h-[60vh]">
-      <div className="flex py-3 font-ExtraBold text-grey text-left px-4">
-        <div className="w-[10%]">Rank</div>
-        <div className="w-[30%]">User</div>
-        <div className="w-[32%]">Tier</div>
-        <div className="w-[18%]">연속 커밋 횟수</div>
-        <div className="w-[10%]">경험치</div>
-      </div>
+      <RankingHeader />
 
       <div className="min-h-[50vh]">
         {error ? (
