@@ -48,7 +48,7 @@ const GithubLoginLoading = () => {
   }, []);
 
   return (
-    <main className="w-screen h-screen flex items-center justify-center bg-black/50">
+    <main className="w-screen h-screen flex items-center justify-center bg-black">
       <LoginLoadingModal />
     </main>
   );
