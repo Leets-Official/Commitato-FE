@@ -3,6 +3,7 @@ import { RankingUserTypes } from 'ranking-types';
 
 const PATH = '/user';
 
+// GET 랭킹 조회
 export const getRankingApi = async (page: number = 0, size: number = 10) => {
   try {
     const res = await api.get(`${PATH}/ranking`, { params: { page, size } });
@@ -31,6 +32,7 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
   }
 };
 
+// GET 사용자 검색
 export const getUserIdApi = async (
   githubId: string,
 ): Promise<RankingUserTypes[]> => {
@@ -52,5 +54,17 @@ export const getUserIdApi = async (
       ? error.message
       : '유저 아이디 조회 오류가 발생했습니다: ';
     return [];
+  }
+};
+
+// GET  호버 시 사용자 정보 조회 
+export const getHoverUserInfoApi = async (githubId: string) => {
+  try {
+    const res = await api.get(`${PATH}/${githubId}/hover`);
+    return res.data.result;
+  } catch (error) {
+    error instanceof Error
+      ? error.message
+      : '사용자 정보 조회 오류가 발생했습니다: ';
   }
 };
