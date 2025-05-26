@@ -10,15 +10,9 @@ const UpdateButton = ({ onUpdated }: UpdateButtonProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
-    const githubId = localStorage.getItem('githubId');
-    if (!githubId) {
-      console.error('GitHub ID가 존재하지 않습니다.');
-      return;
-    }
-
     try {
       setIsLoading(true);
-      const updatedUser = await updateButton(githubId);
+      const updatedUser = await updateButton();
       console.log(updatedUser);
       if (updatedUser) {
         onUpdated(updatedUser);
