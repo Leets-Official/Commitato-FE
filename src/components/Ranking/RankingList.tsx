@@ -2,9 +2,10 @@ import React from 'react';
 import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import Pagination from '@/components/Ranking/Pagination';
-import RankingItemSkeleton from './RankingItemSkeleton';
-import RankingHeader from './RankingHeader';
+import RankingItemSkeleton from '@/components/Ranking/RankingItemSkeleton';
+import RankingHeader from '@/components/Ranking/RankingHeader';
 import { useRankingList } from '@/hooks/useRankingList';
+import MyRankingSection from '@/components/Ranking/MyRankingSection';
 
 interface RankingListProps {
   searchId: string | null;
@@ -25,13 +26,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   if (isLoading) {
     return (
       <div className="w-full flex flex-col min-h-[60vh]">
-        <div className="flex py-3 font-ExtraBold text-grey text-left px-4">
-          <div className="w-[10%]">Rank</div>
-          <div className="w-[30%]">User</div>
-          <div className="w-[35%]">Tier</div>
-          <div className="w-[15%]">연속 커밋 횟수</div>
-          <div className="w-[10%]">경험치</div>
-        </div>
+        <RankingHeader />
         <div className="min-h-[50vh]">
           {Array.from({ length: 10 }).map((_, idx) => (
             <RankingItemSkeleton key={idx} />
@@ -72,13 +67,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           <Line className="w-full" />
         </div>
 
-        {isLoggedIn ? (
-          myRanking && <RankingItem {...myRanking} />
-        ) : (
-          <div className="font-Bold text-assistive flex items-center justify-center text-grey p-4 bg-gray- rounde50d-md ">
-            로그인 후 내 랭킹을 확인할 수 있어요!
-          </div>
-        )}
+        <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
       </div>
     </div>
   );
