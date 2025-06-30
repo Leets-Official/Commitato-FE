@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { debounce } from 'lodash';
+
 import RankingItem from '@/components/Ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import Pagination from '@/components/Ranking/Pagination';
 import RankingItemSkeleton from '@/components/Ranking/RankingItemSkeleton';
 import RankingHeader from '@/components/Ranking/RankingHeader';
-import { useRankingList } from '@/hooks/useRankingList';
 import MyRankingSection from '@/components/Ranking/MyRankingSection';
+import HoverModal from '@/components/Ranking/HoverModal';
+
+import { useRankingList } from '@/hooks/useRankingList';
+import { getHoverUserInfoApi } from '@/apis/ranking/ranking.api';
+import { HoverUserInfo } from 'ranking-types';
 
 interface RankingListProps {
   searchId: string | null;
@@ -23,6 +29,30 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     isLoggedIn,
   } = useRankingList(searchId);
 
+  const [hoverUserInfo, setHoverUserInfo] = useState<HoverUserInfo | null>(
+    null,
+  );
+
+  // debounce로 hover api 호출 최적화
+  const debouncedFetch = useRef(
+    debounce(async (githubId: string, position: { x: number; y: number }) => {
+      const res = await getHoverUserInfoApi(githubId);
+      setHoverUserInfo({ ...res, position });
+    }, 300),
+  ).current;
+
+  const handleUserHover = (
+    githubId: string,
+    position: { x: number; y: number },
+  ) => {
+    debouncedFetch(githubId, position);
+  };
+
+  const handleUserLeave = () => {
+    setHoverUserInfo(null);
+  };
+
+  // 로딩 시 스켈레톤 ui 표시
   if (isLoading) {
     return (
       <div className="w-full flex flex-col min-h-[60vh]">
@@ -36,6 +66,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     );
   }
 
+  // 에러 발생 시 에러 메시지 표시
   if (error) {
     return <p className="text-center text-red-500 font-Bold">{error}</p>;
   }
@@ -48,7 +79,14 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         {error ? (
           <p className="text-center text-red-500 font-Bold mt-4">{error}</p>
         ) : rankingData.length > 0 ? (
-          rankingData.map(data => <RankingItem key={data.githubId} {...data} />)
+          rankingData.map(data => (
+            <RankingItem
+              key={data.githubId}
+              {...data}
+              onUserHover={handleUserHover}
+              onUserLeave={handleUserLeave}
+            />
+          ))
         ) : (
           <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
             검색 결과가 없습니다.
@@ -67,8 +105,17 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
           <Line className="w-full" />
         </div>
 
+        {/* 리스트 하단 내 랭킹 표시 */}
         <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
       </div>
+
+      {/* 호버 모달 */}
+      {/* {hoverUserInfo && (
+        <HoverModal
+          userInfo={hoverUserInfo}
+          onClose={handleUserLeave}
+        />
+      )} */}
     </div>
   );
 };

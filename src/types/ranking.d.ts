@@ -13,4 +13,10 @@ declare module 'ranking-types' {
   export interface RankingUserWithChange extends RankingUserTypes {
     change: RankChange;
   }
+
+  export interface HoverUserInfo {
+    githubId: string;
+    githubUsername: string;
+    githubProfileImage: string;
+  }
 }
