@@ -25,6 +25,7 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
         content: rankingData,
         totalPages: res.data.result.totalPage,
         totalElements: res.data.result.totalElements,
+        size: res.data.result.size,
       };
     } else {
       console.error('올바른 응답 데이터가 아닙니다.', res.data);

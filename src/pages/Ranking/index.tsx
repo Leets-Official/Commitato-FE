@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import Header from '@/components/common/Header';
 import Line from '@/assets/icon/myPageLine.svg?react';
 import SearchIcon from '@/assets/icon/ic_ranking_search.svg?react';
 import Footer from '@/components/common/Footer';
 import RankingList from '@/components/Ranking/RankingList';
-import { useState } from 'react';
-import QuestionMarkIcon from '@/assets/icon/ic_question_mark.svg?react';
+import RankingInfoText from '@/components/Ranking/RankingInfoText';
 
 const RankingPage = () => {
   const [searchId, setSearchId] = useState('');
@@ -28,9 +28,10 @@ const RankingPage = () => {
     <div className="bg-black min-h-screen flex flex-col">
       <Header />
       <main className="h-[90vh] flex flex-col m-[3%] w-[65%] bg-white rounded-2xl mx-auto py-7 px-10">
-        <p className="font-staatliches text-header flex flex-row items-center gap-2">
-          RANKING <QuestionMarkIcon />
-        </p>
+        <div className="font-staatliches text-header flex flex-row items-center gap-3">
+          RANKING
+          <RankingInfoText />
+        </div>
         <Line className="w-full overflow-visible" />
         <div className="relative w-[90%] mt-2 flex items-center justify-center mx-auto">
           <input
@@ -50,6 +51,7 @@ const RankingPage = () => {
         </div>
         <RankingList searchId={filteredUser} />
       </main>
+
       <Footer />
     </div>
   );

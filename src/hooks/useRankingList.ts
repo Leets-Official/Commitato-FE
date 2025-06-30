@@ -29,14 +29,14 @@ export const useRankingList = (searchId: string | null) => {
         setIsLoading(true);
         const res = await getRankingApi(page);
         if (res) {
-          const { content, totalPages } = res;
+          const { content, totalPages, size } = res;
 
           const newRankingData = content.map(
             (
               user: { githubId: string | number; ranking: number },
               index: number,
             ) => {
-              const ranking = index + 1;
+              const ranking = index + 1 + page * size;
               const prevUser = prevRankingData.find(
                 prev => prev.githubId === user.githubId,
               );
@@ -92,12 +92,16 @@ export const useRankingList = (searchId: string | null) => {
           const users = await getUserIdApi(searchId);
 
           if (users) {
-            const newSearchResult = users.map((user, index) => {
+            const newSearchResult = users.map(user => {
+              const matched = rankingData.find(
+                item => item.githubId === user.githubId,
+              );
+              const ranking = matched?.ranking ?? 0;
+
               const prevUser = prevRankingData.find(
                 prev => prev.githubId === user.githubId,
               );
               const prevRank = prevUser?.ranking;
-              const ranking = prevRank ?? index + 1;
               let change: 'up' | 'down' | 'none' = 'none';
 
               if (prevRank !== undefined) {
