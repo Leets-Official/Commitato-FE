@@ -1,10 +1,17 @@
 import { AxiosError } from 'axios';
 import { RankingUserWithChange } from 'ranking-types';
 import { getRankingApi, getUserIdApi } from '@/apis/ranking/ranking.api';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  prevRankingListAtom,
+  currentRankingListAtom,
+} from '@/atoms/rankingAtoms';
+import { useAtom } from 'jotai';
 
 export const useRankingList = (searchId: string | null) => {
-  const [rankingData, setRankingData] = useState<RankingUserWithChange[]>([]);
+  const [rankingData, setRankingData] = useAtom(currentRankingListAtom);
+  const [prevRankingData, setPrevRankingData] = useAtom(prevRankingListAtom);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [myRanking, setMyRanking] = useState<RankingUserWithChange | null>(
@@ -14,7 +21,6 @@ export const useRankingList = (searchId: string | null) => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [hasFetchMyRanking, setHasFetchMyRanking] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const prevRankingMap = useRef<Record<string, number>>({});
 
   // 랭킹 조회 api 요청
   useEffect(() => {
@@ -26,16 +32,23 @@ export const useRankingList = (searchId: string | null) => {
           const { content, totalPages } = res;
 
           const newRankingData = content.map(
-            (user: { githubId: string | number; ranking: number }) => {
-              const prevRank = prevRankingMap.current[user.githubId];
+            (
+              user: { githubId: string | number; ranking: number },
+              index: number,
+            ) => {
+              const ranking = index + 1;
+              const prevUser = prevRankingData.find(
+                prev => prev.githubId === user.githubId,
+              );
+              const prevRank = prevUser?.ranking;
               let change: 'up' | 'down' | 'none' = 'none';
 
               if (prevRank !== undefined) {
-                if (user.ranking < prevRank) change = 'up';
-                else if (user.ranking > prevRank) change = 'down';
+                if (ranking < prevRank) change = 'up';
+                else if (ranking > prevRank) change = 'down';
               }
 
-              return { ...user, change };
+              return { ...user, ranking, change };
             },
           );
 
@@ -44,13 +57,7 @@ export const useRankingList = (searchId: string | null) => {
           setTotalPages(totalPages);
 
           // 이전 랭킹 저장
-          prevRankingMap.current = newRankingData.reduce(
-            (acc: Record<string, number>, user: RankingUserWithChange) => {
-              acc[user.githubId] = user.ranking;
-              return acc;
-            },
-            {} as Record<string, number>,
-          );
+          setPrevRankingData(newRankingData);
 
           if (!hasFetchMyRanking) {
             const myRank = content.find(
@@ -85,16 +92,20 @@ export const useRankingList = (searchId: string | null) => {
           const users = await getUserIdApi(searchId);
 
           if (users) {
-            const newSearchResult = users.map(user => {
-              const prevRank = prevRankingMap.current[user.githubId];
+            const newSearchResult = users.map((user, index) => {
+              const prevUser = prevRankingData.find(
+                prev => prev.githubId === user.githubId,
+              );
+              const prevRank = prevUser?.ranking;
+              const ranking = prevRank ?? index + 1;
               let change: 'up' | 'down' | 'none' = 'none';
 
               if (prevRank !== undefined) {
-                if (user.ranking < prevRank) change = 'up';
-                else if (user.ranking > prevRank) change = 'down';
+                if (ranking < prevRank) change = 'up';
+                else if (ranking > prevRank) change = 'down';
               }
 
-              return { ...user, change };
+              return { ...user, ranking, change };
             });
 
             setRankingData(newSearchResult);
