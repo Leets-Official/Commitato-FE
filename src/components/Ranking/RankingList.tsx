@@ -7,7 +7,7 @@ import Pagination from '@/components/Ranking/Pagination';
 import RankingItemSkeleton from '@/components/Ranking/RankingItemSkeleton';
 import RankingHeader from '@/components/Ranking/RankingHeader';
 import MyRankingSection from '@/components/Ranking/MyRankingSection';
-import HoverModal from '@/components/Ranking/HoverModal';
+import HoverModal from '@/components/modal/HoverModal';
 
 import { useRankingList } from '@/hooks/useRankingList';
 import { getHoverUserInfoApi } from '@/apis/ranking/ranking.api';

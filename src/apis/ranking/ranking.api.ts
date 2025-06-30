@@ -12,11 +12,15 @@ export const getRankingApi = async (page: number = 0, size: number = 10) => {
 
     if (res.data?.result?.content) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const rankingData = res.data.result.content.map((item: any) => ({
-        ...item,
-        isMe: item.githubId === myGithubId,
-      }));
+      const rankingData = res.data.result.content.map(
+        (item: any, index: number) => ({
+          ...item,
+          ranking: index + 1 + page * size,
+          isMe: item.githubId === myGithubId,
+        }),
+      );
 
+      console.log('랭킹 조회 데이터: ', rankingData);
       return {
         content: rankingData,
         totalPages: res.data.result.totalPage,
@@ -57,7 +61,7 @@ export const getUserIdApi = async (
   }
 };
 
-// GET  호버 시 사용자 정보 조회 
+// GET  호버 시 사용자 정보 조회
 export const getHoverUserInfoApi = async (githubId: string) => {
   try {
     const res = await api.get(`${PATH}/${githubId}/hover`);
