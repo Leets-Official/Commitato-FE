@@ -30,7 +30,7 @@ const GithubLoginButton = () => {
     >
       {githubId ? 'Login by' : 'Login with'}
       <GithubSVG className="w-6 h-6" />
-      {githubId || 'Github'}
+      {githubId || 'GitHub'}
     </Button>
   );
 };
