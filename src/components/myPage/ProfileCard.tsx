@@ -79,10 +79,15 @@ const ProfileCard = ({
 
     const diffInMs = now.getTime() - pastDate.getTime();
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const diffInDays = Math.floor(diffInHours / 24);
 
-    return diffInHours > 0
-      ? `${diffInHours}시간 전`
-      : formatDistanceToNow(pastDate, { addSuffix: true, locale: ko });
+    if (diffInDays > 0) {
+      return `${diffInDays}일 전`;
+    } else if (diffInHours > 0) {
+      return `${diffInHours}시간 전`;
+    } else {
+      return formatDistanceToNow(pastDate, { addSuffix: true, locale: ko });
+    }
   };
 
   return (

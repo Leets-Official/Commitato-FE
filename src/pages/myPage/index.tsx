@@ -44,7 +44,7 @@ const MyPage = () => {
         {userData ? (
           <>
             <p className="font-staatliches text-header">
-              {githubId ? `${githubId}'s PAGE` : 'MY PAGE'}
+              {isMyPage ? 'MY PAGE' : `${githubId}'s PAGE`}
             </p>
             <Line />
           </>

@@ -11,7 +11,7 @@ const LoginLoadingModal = () => {
       <div className="w-8 h-8 border-2 border-black border-t-transparent rounded-full animate-spin" />
       <br />
       <div className="font-Regular text-small leading-relaxed">
-        GITHUB
+        GitHub
         <GithubSVG className="inline-block mx-1 mb-1" />
         에서 정보를 가져오는 중입니다.
         <br />

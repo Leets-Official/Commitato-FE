@@ -33,7 +33,7 @@ const MyCommitFarm = ({ isLoading, className = '' }: MyCommitFarmProps) => {
       }
     };
     fetchData();
-  }, [githubId]);
+  }, [finalGithubId]);
 
   if (isLoading) {
     return (
