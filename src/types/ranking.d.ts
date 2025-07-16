@@ -12,11 +12,17 @@ declare module 'ranking-types' {
 
   export interface RankingUserWithChange extends RankingUserTypes {
     change: RankChange;
+    onUserHover?: (
+      githubId: string,
+      position: { x: number; y: number },
+    ) => void;
+    onUserLeave?: () => void;
   }
 
   export interface HoverUserInfo {
     githubId: string;
     githubUsername: string;
     githubProfileImage: string;
+    position: { x: number; y: number };
   }
 }

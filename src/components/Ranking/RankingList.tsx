@@ -45,6 +45,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     githubId: string,
     position: { x: number; y: number },
   ) => {
+    console.log('👆 Hover 감지:', githubId, position);
     debouncedFetch(githubId, position);
   };
 
@@ -110,12 +111,9 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
       </div>
 
       {/* 호버 모달 */}
-      {/* {hoverUserInfo && (
-        <HoverModal
-          userInfo={hoverUserInfo}
-          onClose={handleUserLeave}
-        />
-      )} */}
+      {hoverUserInfo && (
+        <HoverModal userInfo={hoverUserInfo} onClose={handleUserLeave} />
+      )}
     </div>
   );
 };
