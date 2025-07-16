@@ -1,40 +1,21 @@
 import FarmLine from '@/assets/icon/commitFarm.svg?react';
 import CountNumber from '@/components/myPage/CountNumber';
 import CommitCalendar from '@/components/myPage/CommitCalendar';
-import { useEffect, useState } from 'react';
-import getUserCommits from '@/apis/myPage/userCommit.api';
-import { useParams } from 'react-router-dom';
 import SkeletonBox from '@/components/common/SkeletonBox';
 import Line from '@/assets/icon/myPageLine.svg?react';
+import { CommitType } from '@/types/commit';
 
 interface MyCommitFarmProps {
   isLoading: boolean;
   className?: string;
+  commits: CommitType[];
 }
 
-const MyCommitFarm = ({ isLoading, className = '' }: MyCommitFarmProps) => {
-  const [commitData, setCommitData] = useState([]);
-  const { githubId } = useParams();
-  const myGithubId = localStorage.getItem('githubId');
-  const finalGithubId = githubId || myGithubId;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!finalGithubId) {
-        return;
-      }
-
-      try {
-        const data = await getUserCommits(finalGithubId);
-        console.log(data);
-        setCommitData(data);
-      } catch (error) {
-        console.error('커밋 데이터 로드 실패:', error);
-      }
-    };
-    fetchData();
-  }, [finalGithubId]);
-
+const MyCommitFarm = ({
+  isLoading,
+  className = '',
+  commits,
+}: MyCommitFarmProps) => {
   if (isLoading) {
     return (
       <main className={`w-full flex flex-col mt-2 ${className}`}>
@@ -54,7 +35,7 @@ const MyCommitFarm = ({ isLoading, className = '' }: MyCommitFarmProps) => {
         <CountNumber />
       </div>
       <FarmLine className="w-full" />
-      <CommitCalendar commits={commitData} />
+      <CommitCalendar commits={commits} />
     </main>
   );
 };

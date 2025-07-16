@@ -1,12 +1,8 @@
+import { CommitType } from '@/types/commit';
 import { format, subMonths, startOfMonth, endOfMonth } from 'date-fns';
 
-type CommitData = {
-  commitDate: string;
-  cnt: number;
-};
-
 type Props = {
-  commits: CommitData[];
+  commits: CommitType[];
 };
 
 const getColorClass = (cnt: number): string => {
