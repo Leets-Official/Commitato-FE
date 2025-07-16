@@ -10,6 +10,8 @@ import MyPageUser from '@/apis/myPage/user.api';
 import { useParams } from 'react-router-dom';
 import CongratModal from '@/components/modal/CongratModal';
 import MyPageHeaderSkeleton from '@/components/myPage/MyPageHeaderSkeleton';
+import { CommitType } from '@/types/commit';
+import getUserCommits from '@/apis/myPage/userCommit.api';
 
 const MyPage = () => {
   const { githubId } = useParams();
@@ -17,6 +19,7 @@ const MyPage = () => {
   const myGithubId = localStorage.getItem('githubId');
   const [prevTier, setPrevTier] = useState<string | null>(null);
   const [isTierUp, setIsTierUp] = useState(false);
+  const [commitData, setCommitData] = useState<CommitType[]>([]);
 
   const finalGithubId = githubId || myGithubId;
   const isMyPage = !githubId || githubId === myGithubId;
@@ -34,6 +37,26 @@ const MyPage = () => {
 
       setUserData(data);
     };
+    fetchUserData();
+  }, [githubId, myGithubId]);
+
+  useEffect(() => {
+    if (!finalGithubId) return;
+
+    const fetchUserData = async () => {
+      const data = await MyPageUser(finalGithubId);
+
+      if (userData && data?.tierName !== userData.tierName) {
+        setPrevTier(userData.tierName);
+        setIsTierUp(true);
+      }
+
+      setUserData(data);
+
+      const commits = await getUserCommits(finalGithubId);
+      setCommitData(commits);
+    };
+
     fetchUserData();
   }, [githubId, myGithubId]);
 
@@ -61,7 +84,11 @@ const MyPage = () => {
         </div>
         <div className="flex w-full mt-5 justify-evenly">
           <div className="w-[60%]">
-            <MyCommitFarm className="w-full" isLoading={!userData} />
+            <MyCommitFarm
+              className="w-full"
+              isLoading={!userData}
+              commits={commitData}
+            />
           </div>
           <div className="w-[30%] mt-6">
             <CommitStats user={userData as UserTypes} isLoading={!userData} />
