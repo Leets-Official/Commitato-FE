@@ -12,6 +12,8 @@ import HoverModal from '@/components/modal/HoverModal';
 import { useRankingList } from '@/hooks/useRankingList';
 import { getHoverUserInfoApi } from '@/apis/ranking/ranking.api';
 import { HoverUserInfo } from 'ranking-types';
+import { useAtom } from 'jotai';
+import { hoverUserCacheAtom } from '@/atoms/hoverUserAtoms';
 
 interface RankingListProps {
   searchId: string | null;
@@ -33,11 +35,15 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     null,
   );
 
+  const [hoverUserCache, setHoverUserCache] = useAtom(hoverUserCacheAtom);
+
   // debounce로 hover api 호출 최적화
   const debouncedFetch = useRef(
     debounce(async (githubId: string, position: { x: number; y: number }) => {
       const res = await getHoverUserInfoApi(githubId);
-      setHoverUserInfo({ ...res, position });
+      const userInfo = { ...res, position };
+      setHoverUserCache(prev => ({ ...prev, [githubId]: res }));
+      setHoverUserInfo(userInfo);
     }, 300),
   ).current;
 
@@ -46,6 +52,11 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     position: { x: number; y: number },
   ) => {
     console.log('👆 Hover 감지:', githubId, position);
+    if (hoverUserCache[githubId]) {
+      setHoverUserInfo({ ...hoverUserCache[githubId], position });
+      return;
+    }
+
     debouncedFetch(githubId, position);
   };
 
