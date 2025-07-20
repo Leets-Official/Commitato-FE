@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { debounce } from 'lodash';
 
-import RankingItem from '@/components/Ranking/RankingItem';
+import RankingItem from '@/components/temp/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
-import Pagination from '@/components/Ranking/Pagination';
-import RankingItemSkeleton from '@/components/Ranking/RankingItemSkeleton';
-import RankingHeader from '@/components/Ranking/RankingHeader';
-import MyRankingSection from '@/components/Ranking/MyRankingSection';
+import Pagination from '@/components/temp/Pagination';
+import RankingItemSkeleton from '@/components/temp/RankingItemSkeleton';
+import RankingHeader from '@/components/temp/RankingHeader';
+import MyRankingSection from '@/components/temp/MyRankingSection';
 import HoverModal from '@/components/modal/HoverModal';
 
 import { useRankingList } from '@/hooks/useRankingList';
