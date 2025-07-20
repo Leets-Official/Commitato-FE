@@ -1,5 +1,5 @@
 import React from 'react';
-import RankingItem from '@/components/temp/RankingItem';
+import RankingItem from '@/components/ranking/RankingItem';
 import { RankingUserWithChange } from 'ranking-types';
 
 interface MyRankingSectionProps {
