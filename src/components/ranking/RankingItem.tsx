@@ -41,7 +41,7 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
           onMouseEnter={e => {
             const rect = e.currentTarget.getBoundingClientRect();
             const offsetX = 20; // 오른쪽으로 20px
-            const offsetY = 3; // 아래로 10px
+            const offsetY = 10; // 아래로 10px
 
             onUserHover?.(githubId, {
               x: rect.left + offsetX,
