@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import MainPage from '@/pages/Main';
-import RankingPage from '@/pages/Ranking';
+import MainPage from '@/pages/main';
+import RankingPage from '@/pages/ranking';
 import MyPage from '@/pages/myPage';
 import GithubLoginLoading from '@/components/main/GithubLoginLoading';
 

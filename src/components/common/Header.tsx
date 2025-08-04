@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="w-full h-[63px] bg-white">
+      <header className="sticky top-0 z-50 w-full h-[63px] bg-white">
         <div className="flex items-center justify-between py-4 px-6">
           <div className="flex items-center space-x-8">
             <Link to="/" className="font-staatliches text-body">

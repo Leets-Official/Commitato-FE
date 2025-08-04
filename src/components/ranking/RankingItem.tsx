@@ -1,7 +1,4 @@
 import React from 'react';
-import UpIcon from '@/assets/icon/ic_ranking_up.svg?react';
-import DownIcon from '@/assets/icon/ic_ranking_down.svg?react';
-import LineIcon from '@/assets/icon/ic_ranking_line.svg?react';
 import { useNavigate } from 'react-router-dom';
 import { RankingUserWithChange } from 'ranking-types';
 
@@ -11,24 +8,14 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
   tierName,
   consecutiveCommitDays,
   exp,
-  change,
   isMe,
+  onUserHover,
+  onUserLeave,
 }) => {
   const nav = useNavigate();
 
   const handleIdClick = () => {
     nav(`/mypage/${githubId}`);
-  };
-
-  const getIcon = () => {
-    switch (change) {
-      case 'up':
-        return <UpIcon className="w-3 h-4" />;
-      case 'down':
-        return <DownIcon className="w-3 h-4" />;
-      default:
-        return <LineIcon className="w-3 h-2" />;
-    }
   };
 
   return (
@@ -51,6 +38,17 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
         <span
           className="cursor-pointer hover:underline"
           onClick={handleIdClick}
+          onMouseEnter={e => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const offsetX = 20; // 오른쪽으로 20px
+            const offsetY = 10; // 아래로 10px
+
+            onUserHover?.(githubId, {
+              x: rect.left + offsetX,
+              y: rect.bottom + rect.height + offsetY,
+            });
+          }}
+          onMouseLeave={onUserLeave}
         >
           {githubId}
         </span>
@@ -59,7 +57,6 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
       <div className="w-[15%]">{consecutiveCommitDays}일</div>
       <div className="w-[10%] font-bold flex items-center justify-between">
         <span className="mr-1">{exp}</span>
-        {getIcon()}
       </div>
     </div>
   );
