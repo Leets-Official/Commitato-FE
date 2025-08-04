@@ -49,7 +49,6 @@ export const useRankingList = (searchId: string | null) => {
   }, [page, searchId, hasFetchMyRanking]);
 
   // 유저 검색
-  // 유저 검색
   useEffect(() => {
     if (searchId) {
       const fetchUser = async () => {
