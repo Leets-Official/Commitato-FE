@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { debounce } from 'lodash';
+import { useAtom } from 'jotai';
 
 import RankingItem from '@/components/ranking/RankingItem';
 import Line from '@/assets/icon/myPageLine.svg?react';
@@ -12,12 +13,13 @@ import HoverModal from '@/components/modal/HoverModal';
 import { useRankingList } from '@/hooks/useRankingList';
 import { getHoverUserInfoApi } from '@/apis/ranking/ranking.api';
 import { HoverUserInfo } from 'ranking-types';
-import { useAtom } from 'jotai';
 import { hoverUserCacheAtom } from '@/atoms/hoverUserAtoms';
 
 interface RankingListProps {
   searchId: string | null;
 }
+
+type Position = { x: number; y: number };
 
 const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const {
@@ -34,40 +36,44 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
   const [hoverUserInfo, setHoverUserInfo] = useState<HoverUserInfo | null>(
     null,
   );
-
   const [hoverUserCache, setHoverUserCache] = useAtom(hoverUserCacheAtom);
 
-  // debounce로 hover api 호출 최적화
+  // prevent flicker when moving cursor between target and modal
+  const closeTimer = useRef<number | null>(null);
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+  const scheduleClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setHoverUserInfo(null), 120);
+  };
+
+  // debounced fetch for hover card
   const debouncedFetch = useRef(
-    debounce(async (githubId: string, position: { x: number; y: number }) => {
+    debounce(async (githubId: string, position: Position) => {
       const res = await getHoverUserInfoApi(githubId);
       const userInfo = { ...res, position };
       setHoverUserCache(prev => ({ ...prev, [githubId]: res }));
       setHoverUserInfo(userInfo);
-    }, 300),
+    }, 250),
   ).current;
 
-  const handleUserHover = (
-    githubId: string,
-    position: { x: number; y: number },
-  ) => {
-    console.log('👆 Hover 감지:', githubId, position);
+  const handleUserHover = (githubId: string, position: Position) => {
+    cancelClose();
     if (hoverUserCache[githubId]) {
       setHoverUserInfo({ ...hoverUserCache[githubId], position });
       return;
     }
-
     debouncedFetch(githubId, position);
   };
 
-  const handleUserLeave = () => {
-    setHoverUserInfo(null);
-  };
-
-  // 로딩 시 스켈레톤 ui 표시
+  // loading
   if (isLoading) {
     return (
-      <div className="w-full flex flex-col min-h-[60vh]">
+      <div className="flex min-h-[60vh] w-full flex-col">
         <RankingHeader />
         <div className="min-h-[50vh]">
           {Array.from({ length: 10 }).map((_, idx) => (
@@ -78,54 +84,56 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     );
   }
 
-  // 에러 발생 시 에러 메시지 표시
+  // error
   if (error) {
-    return <p className="text-center text-red-500 font-Bold">{error}</p>;
+    return <p className="font-Bold text-center text-red-500">{error}</p>;
   }
 
   return (
-    <div className="w-full flex flex-col justify-between min-h-[60vh]">
+    <div className="flex min-h-[60vh] w-full flex-col justify-between">
       <RankingHeader />
 
       <div className="min-h-[50vh]">
-        {error ? (
-          <p className="text-center text-red-500 font-Bold mt-4">{error}</p>
-        ) : rankingData.length > 0 ? (
+        {rankingData.length > 0 ? (
           rankingData.map(data => (
             <RankingItem
               key={data.githubId}
               {...data}
               onUserHover={handleUserHover}
-              onUserLeave={handleUserLeave}
+              onUserLeave={scheduleClose}
             />
           ))
         ) : (
-          <p className="text-small text-center text-grey font-Bold letter-spacing-0.1 mt-4">
+          <p className="letter-spacing-0.1 mt-4 text-center text-small font-Bold text-grey">
             검색 결과가 없습니다.
           </p>
         )}
       </div>
-      <div className="flex justify-center mt-9 min-h-[40px]">
+
+      <div className="mt-9 flex min-h-[40px] justify-center">
         <Pagination
           totalPages={totalPages}
           currentPage={page}
           onPageChange={setPage}
         />
       </div>
-      <div className="w-full mt-1 pt-3">
+
+      <div className="mt-1 w-full pt-3">
         <div className="w-full">
           <Line className="w-full" />
         </div>
-
-        {/* 리스트 하단 내 랭킹 표시 */}
-        <div className="flex justify-center items-center mt-1.5">
+        <div className="mt-1.5 flex items-center justify-center">
           <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
         </div>
       </div>
 
-      {/* 호버 모달 */}
       {hoverUserInfo && (
-        <HoverModal userInfo={hoverUserInfo} onClose={handleUserLeave} />
+        <HoverModal
+          userInfo={hoverUserInfo}
+          onClose={() => setHoverUserInfo(null)}
+          onEnter={cancelClose}
+          onLeave={scheduleClose}
+        />
       )}
     </div>
   );

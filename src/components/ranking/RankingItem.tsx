@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RankingUserWithChange } from 'ranking-types';
+
+type Position = { x: number; y: number };
 
 const RankingItem: React.FC<RankingUserWithChange> = ({
   ranking,
@@ -13,49 +15,46 @@ const RankingItem: React.FC<RankingUserWithChange> = ({
   onUserLeave,
 }) => {
   const nav = useNavigate();
+  const idRef = useRef<HTMLSpanElement>(null);
 
-  const handleIdClick = () => {
-    nav(`/mypage/${githubId}`);
+  const handleIdClick = () => nav(`/mypage/${githubId}`);
+
+  const handleEnter = () => {
+    const el = idRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect(); // viewport-based
+    const position: Position = { x: rect.left, y: rect.bottom };
+    onUserHover?.(githubId, position);
   };
 
   return (
-    <div className="flex py-3 px-4 items-center font-Bold whitespace-nowrap">
+    <div className="flex items-center whitespace-nowrap px-4 py-3 font-Bold">
       <div
-        className={`w-[10%] ${
-          ranking <= 3
-            ? 'text-small md:text-lg font-ExtraBold'
-            : 'text-assistive'
-        }`}
+        className={`w-[10%] ${ranking <= 3 ? 'text-small md:text-lg font-ExtraBold' : 'text-assistive'}`}
       >
         {ranking}
       </div>
-      <div className="w-[30%] flex items-center">
+
+      <div className="flex w-[30%] items-center">
         {isMe && (
-          <span className="bg-primary px-1 rounded text-captionBody font-SemiBold mr-2">
+          <span className="mr-2 rounded bg-primary px-1 text-captionBody font-SemiBold">
             me
           </span>
         )}
         <span
+          ref={idRef}
           className="cursor-pointer hover:underline"
           onClick={handleIdClick}
-          onMouseEnter={e => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const offsetX = 20; // 오른쪽으로 20px
-            const offsetY = 10; // 아래로 10px
-
-            onUserHover?.(githubId, {
-              x: rect.left + offsetX,
-              y: rect.bottom + rect.height + offsetY,
-            });
-          }}
+          onMouseEnter={handleEnter}
           onMouseLeave={onUserLeave}
         >
           {githubId}
         </span>
       </div>
+
       <div className="w-[35%]">{tierName}</div>
       <div className="w-[15%]">{consecutiveCommitDays}일</div>
-      <div className="w-[10%] font-bold flex items-center justify-between">
+      <div className="flex w-[10%] items-center justify-between font-bold">
         <span className="mr-1">{exp}</span>
       </div>
     </div>
