@@ -118,7 +118,9 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         </div>
 
         {/* 리스트 하단 내 랭킹 표시 */}
-        <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
+        <div className="flex justify-center items-center mt-1.5">
+          <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
+        </div>
       </div>
 
       {/* 호버 모달 */}
