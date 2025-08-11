@@ -122,7 +122,9 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         <div className="w-full">
           <Line className="w-full" />
         </div>
-        <div className="mt-1.5 flex items-center justify-center">
+        <div
+          className={`${!isLoggedIn ? 'mt-1.5 flex items-center justify-center' : ''}`}
+        >
           <MyRankingSection isLoggedIn={isLoggedIn} myRanking={myRanking} />
         </div>
       </div>
