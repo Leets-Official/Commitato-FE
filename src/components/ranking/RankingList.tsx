@@ -51,7 +51,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
     closeTimer.current = window.setTimeout(() => setHoverUserInfo(null), 120);
   };
 
-  // debounced fetch for hover card
+  // debounce로 hover api 호출 최적화
   const debouncedFetch = useRef(
     debounce(async (githubId: string, position: Position) => {
       const res = await getHoverUserInfoApi(githubId);
@@ -122,6 +122,8 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         <div className="w-full">
           <Line className="w-full" />
         </div>
+
+        {/* 리스트 하단 내 랭킹 표시 */}
         <div
           className={`${!isLoggedIn ? 'mt-1.5 flex items-center justify-center' : ''}`}
         >
@@ -129,6 +131,7 @@ const RankingList: React.FC<RankingListProps> = ({ searchId }) => {
         </div>
       </div>
 
+      {/* 호버 모달 */}
       {hoverUserInfo && (
         <HoverModal
           userInfo={hoverUserInfo}
