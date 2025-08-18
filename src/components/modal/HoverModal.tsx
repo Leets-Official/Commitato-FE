@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { HoverUserInfo } from 'ranking-types';
+import { GAP_Y, MARGIN, OFFSET_X } from '@/constants';
 
 interface HoverModalProps {
   userInfo: HoverUserInfo;
@@ -7,10 +8,6 @@ interface HoverModalProps {
   onEnter?: () => void;
   onLeave?: () => void;
 }
-
-const GAP_Y = 8;
-const OFFSET_X = 12;
-const MARGIN = 12;
 
 const HoverModal: React.FC<HoverModalProps> = ({
   userInfo,
