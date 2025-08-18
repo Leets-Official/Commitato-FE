@@ -36,6 +36,7 @@ const UpdateButton = ({ onUpdated }: UpdateButtonProps) => {
         if (githubId) {
           const updatedCommits = await getUserCommits(githubId);
           console.log(updatedCommits);
+          window.location.reload();
         } else {
           console.log('githubId가 없습니다.');
         }

@@ -2,11 +2,13 @@ import { countData } from '@/constants';
 
 const CountNumber = () => {
   return (
-    <div className="flex gap-5 whitespace-nowrap">
+    <div className="w-full flex gap-[1.25rem] whitespace-nowrap">
       {countData.map(({ color, label }, index) => (
-        <div key={index} className="flex gap-2">
-          <div className={`w-[20px] h-[20px] ${color} rounded-[3px]`} />
-          <p className="font-semibold text-[14px]">{label}</p>
+        <div key={index} className="flex gap-[0.5rem]">
+          <div
+            className={`w-[1.25rem] h-[1.25rem] ${color} rounded-[0.1875rem]`}
+          />
+          <p className="font-semibold text-[0.875rem]">{label}</p>
         </div>
       ))}
     </div>
