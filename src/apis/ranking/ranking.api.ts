@@ -66,7 +66,7 @@ export const getUserIdApi = async (
 export const getHoverUserInfoApi = async (githubId: string) => {
   try {
     const res = await api.get(`${PATH}/${githubId}/hover`);
-    console.log('호버 시 사용자 정보 조회 ', res);
+    console.log('호버 시 사용자 정보 조회 ', res.data);
     return res.data.result;
   } catch (error) {
     error instanceof Error
