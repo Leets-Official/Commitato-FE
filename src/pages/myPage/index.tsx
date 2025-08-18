@@ -3,7 +3,6 @@ import Header from '@/components/common/Header';
 import CommitStats from '@/components/myPage/CommitStats';
 import ProfileCard from '@/components/myPage/ProfileCard';
 import MyCommitFarm from '@/components/myPage/MyCommitFarm';
-import Line from '@/assets/icon/myPageLine.svg?react';
 import { UserTypes } from 'commitato-types';
 import { useEffect, useState } from 'react';
 import MyPageUser from '@/apis/myPage/user.api';
@@ -69,7 +68,7 @@ const MyPage = () => {
             <p className="font-staatliches text-header">
               {isMyPage ? 'MY PAGE' : `${githubId}'s PAGE`}
             </p>
-            <Line />
+            <div className="w-full h-px bg-lightGray" />
           </>
         ) : (
           <MyPageHeaderSkeleton />
@@ -85,7 +84,7 @@ const MyPage = () => {
         <div className="flex w-full mt-5 justify-evenly">
           <div className="w-[60%]">
             <MyCommitFarm
-              className="w-full"
+              className="w-full h-full"
               isLoading={!userData}
               commits={commitData}
             />
