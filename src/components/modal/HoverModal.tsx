@@ -65,10 +65,13 @@ const HoverModal: React.FC<HoverModalProps> = ({
   return (
     <div
       ref={ref}
-      className="fixed z-50 rounded-xl border border-gray-200 bg-white p-3 shadow-md"
+      className="fixed z-50 rounded-xl border border-gray-200 bg-white p-3 shadow-md cursor-pointer"
       style={{ top: pos.top, left: pos.left, width: 'max-content' }}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
+      onClick={() =>
+        window.open(`https://github.com/${userInfo.githubId}`, '_blank')
+      }
     >
       <div className="flex items-center gap-3">
         <img
