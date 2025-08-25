@@ -48,4 +48,30 @@ api.interceptors.response.use(
   },
 );
 
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response) {
+      const status = error.response.status;
+      const message =
+        error.response.data?.message ||
+        (status === 401
+          ? '세션이 만료되었습니다. 다시 로그인해주세요.'
+          : status === 403
+            ? '권한이 없습니다.'
+            : 'API 요청에 실패했습니다.');
+
+      if (status === 401) {
+        localStorage.clear();
+        window.location.href = '/';
+      }
+      return Promise.reject(new Error(message));
+    }
+    if (error.request) {
+      return Promise.reject(new Error('서버에 연결할 수 없습니다.'));
+    }
+    return Promise.reject(new Error('요청 중 문제가 발생했습니다.'));
+  },
+);
+
 export default api;
