@@ -1,6 +1,6 @@
 # 🥔Commitato
 > **v1 Leets 3기 최종 프로젝트 개발 기간: 2024.06.20 ~ 2024.08.01** <br/>
-> **v2 개발 기간: 2025.02.10~**
+> **v2 개발 기간: 2025.02.10 ~ 2025.08.25**
 <img src="https://github.com/user-attachments/assets/9d5607fb-20cf-47b5-b0cc-020c87b31250" width="800px"/>
 
 ## ✍프로젝트 소개 
@@ -42,22 +42,38 @@
 </table>
 
 ## 🛠 기술 스택
-
-<div align="center">
+<details markdown="1">
+  <summary>v1</summary>
+  <br/>
+<div>
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 </div>
-<div align="center">
+<div>
   <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=black">  
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 </div>
-<div align="center">
+<div>
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
   <img src="https://img.shields.io/badge/Notion-A8B9CC?style=for-the-badge&logo=Notion&logoColor=black">
   <img src="https://img.shields.io/badge/Figma-49B48A?style=for-the-badge&logo=Figma&logoColor=ffffff">  
 </div>
+</details>
 
+### v2
 <div>
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=TypeScript&logoColor=white">
+</div>
+<div> 
+  <img src="https://img.shields.io/badge/TailwindCss-06B6D4?style=for-the-badge&logo=TailwindCss&logoColor=white">
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+</div>
+<div>
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
+  <img src="https://img.shields.io/badge/Notion-A8B9CC?style=for-the-badge&logo=Notion&logoColor=black">
+  <img src="https://img.shields.io/badge/Figma-49B48A?style=for-the-badge&logo=Figma&logoColor=ffffff">  
+</div>
   
 </div>
 
